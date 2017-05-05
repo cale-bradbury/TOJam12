@@ -28,47 +28,115 @@ public class ArrayUtils
 		return a.Clone() as int[,,];
 	}
 
-	public static int[,,] Merge3D(int[,,] parent, int[,,] child, int x, int y, int z){
-		for(int i = 0; i<child.GetLength(0);i++){
-			for(int j = 0; j<child.GetLength(1);j++){
-				for(int k = 0; k<child.GetLength(2);k++){
-					if( (i+x) < parent.GetLength(0) && (j+y)< parent.GetLength(1) &&(k+z)<parent.GetLength(2)){
-						//Debug.Log(parent.GetLength(0)+"  "+(i+x)+" - "+parent.GetLength(1)+"  "+(j+y)+" - "+parent.GetLength(2)+"  "+(k+z));
-						parent[i+x,j+y,k+z] = child[i,j,k];
-					}
-				}
-			}
-		}
-		return parent;
-	}
-	
-	public static int[,,] SwapValue3D(int[,,] a, int oldValue, int newValue){
-		for(int i = 0; i<a.GetLength(0);i++){
-			for(int j = 0; j<a.GetLength(1);j++){
-				for(int k = 0; k<a.GetLength(2);k++){
-					if(a[i,j,k]==oldValue) a[i,j,k]=newValue;
-				}
-			}
-		}
-		return a;
-	}
+    public static int[,,] Merge3D(int[,,] parent, int[,,] child, int x, int y, int z)
+    {
+        for (int i = 0; i < child.GetLength(0); i++)
+        {
+            for (int j = 0; j < child.GetLength(1); j++)
+            {
+                for (int k = 0; k < child.GetLength(2); k++)
+                {
+                    if ((i + x) < parent.GetLength(0) && (j + y) < parent.GetLength(1) && (k + z) < parent.GetLength(2))
+                    {
+                        //Debug.Log(parent.GetLength(0)+"  "+(i+x)+" - "+parent.GetLength(1)+"  "+(j+y)+" - "+parent.GetLength(2)+"  "+(k+z));
+                        parent[i + x, j + y, k + z] = child[i, j, k];
+                    }
+                }
+            }
+        }
+        return parent;
+    }
+    public static int[,] Merge2D(int[,] parent, int[,] child, int x, int y)
+    {
+        for (int i = 0; i < child.GetLength(0); i++)
+        {
+            for (int j = 0; j < child.GetLength(1); j++)
+            {
+                if ((i + x) < parent.GetLength(0) && (j + y) < parent.GetLength(1))
+                {
+                    parent[i + x, j + y] = child[i, j];
+                }
+            }
+        }
+        return parent;
+    }
 
-	public static int[,,] Flood3D(int[,,] a, int x, int y, int z, int oldValue, int newValue){
-		if(x>-1 && x<a.GetLength(0) && y>-1 && y<a.GetLength(1) && z>-1 && z<a.GetLength(2)){
-			if(a[x,y,z] == oldValue){
-				a[x,y,z] = newValue;
-				Flood3D(a,x-1,y,z,oldValue,newValue);
-				Flood3D(a,x+1,y,z,oldValue,newValue);
-				Flood3D(a,x,y-1,z,oldValue,newValue);
-				Flood3D(a,x,y+1,z,oldValue,newValue);
-				Flood3D(a,x,y,z-1,oldValue,newValue);
-				Flood3D(a,x,y,z+1,oldValue,newValue);
-			}
-		}
-		return a;
-	}
+    public static int[,,] SwapValue3D(int[,,] a, int oldValue, int newValue)
+    {
+        for (int i = 0; i < a.GetLength(0); i++)
+        {
+            for (int j = 0; j < a.GetLength(1); j++)
+            {
+                for (int k = 0; k < a.GetLength(2); k++)
+                {
+                    if (a[i, j, k] == oldValue) a[i, j, k] = newValue;
+                }
+            }
+        }
+        return a;
+    }
+    public static int[,] SwapValue2D(int[,] a, int oldValue, int newValue)
+    {
+        for (int i = 0; i < a.GetLength(0); i++)
+        {
+            for (int j = 0; j < a.GetLength(1); j++)
+            {
+                if (a[i, j] == oldValue) a[i, j] = newValue;
+            }
+        }
+        return a;
+    }
 
-	public static bool hasValue3D(int[,,] a, int value) {
+    public static int[,,] Flood3D(int[,,] a, int x, int y, int z, int oldValue, int newValue)
+    {
+        if (x > -1 && x < a.GetLength(0) && y > -1 && y < a.GetLength(1) && z > -1 && z < a.GetLength(2))
+        {
+            if (a[x, y, z] == oldValue)
+            {
+                a[x, y, z] = newValue;
+                Flood3D(a, x - 1, y, z, oldValue, newValue);
+                Flood3D(a, x + 1, y, z, oldValue, newValue);
+                Flood3D(a, x, y - 1, z, oldValue, newValue);
+                Flood3D(a, x, y + 1, z, oldValue, newValue);
+                Flood3D(a, x, y, z - 1, oldValue, newValue);
+                Flood3D(a, x, y, z + 1, oldValue, newValue);
+            }
+        }
+        return a;
+    }
+    public static int[,] Flood2D(int[,] a, int x, int y, int oldValue, int newValue)
+    {
+        if (x > -1 && x < a.GetLength(0) && y > -1 && y < a.GetLength(1))
+        {
+            if (a[x, y] == oldValue)
+            {
+                a[x, y] = newValue;
+                Flood2D(a, x - 1, y, oldValue, newValue);
+                Flood2D(a, x + 1, y, oldValue, newValue);
+                Flood2D(a, x, y - 1, oldValue, newValue);
+                Flood2D(a, x, y + 1, oldValue, newValue);
+            }
+        }
+        return a;
+    }
+    public static int[,] Flood2D(ref int[,] a, int x, int y, int oldValue, int newValue, ref int c)
+    {
+        if (x > -1 && x < a.GetLength(0) && y > -1 && y < a.GetLength(1))
+        {
+            if (a[x, y] == oldValue)
+            {
+                a[x, y] = newValue;
+                c++;
+                Flood2D(ref a, x - 1, y, oldValue, newValue, ref  c);
+                Flood2D(ref a, x + 1, y, oldValue, newValue, ref c);
+                Flood2D(ref a, x, y - 1, oldValue, newValue, ref c);
+                Flood2D(ref a, x, y + 1, oldValue, newValue, ref c);
+            }
+        }
+        return a;
+    }
+
+    public static bool hasValue3D(int[,,] a, int value) {
 		for (int i = 0; i < a.GetLength(0); i++) {
 			for(int j = 0; j<a.GetLength(1);j++){
 				for(int k = 0; k<a.GetLength(2);k++){

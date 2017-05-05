@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteInEditMode]
-public class DungeonGenerator : MonoBehaviour {
+public class DungeonGenerator : MonoBehaviour
+{
 
     public float unitSize = 1;
     public GameObject[] floorPrefab;
@@ -23,28 +24,63 @@ public class DungeonGenerator : MonoBehaviour {
             Generate();
     }
 
-	[ContextMenu("Generate~")]
+    [ContextMenu("Generate~")]
     public void Generate()
     {
         int[,] worldMap = new int[worldSize, worldSize];
-        for (int i = 0; i < worldSize; i++){
-            for (int j  = 0; j< worldSize; j++){
-                worldMap[i, j] = Random.value < mapWallChance?0:1;
+        for (int i = 0; i < worldSize; i++)
+        {
+            for (int j = 0; j < worldSize; j++)
+            {
+                worldMap[i, j] = Random.value < mapWallChance ? 0 : 1;
             }
         }
         for (int i = 0; i < simulationSteps; i++)
         {
             worldMap = DoStep(worldMap);
         }
-        DrawMap(worldMap);
+        int[,] map = ArrayUtils.Create2D(1, worldSize+2, worldSize+2);
+        map = ArrayUtils.Merge2D(map, worldMap, 1, 1);
+        map = GetLargestSection(map);
+        DrawMap(map);
     }
 
-    public int[,] DoStep (int[,] oldMap)
+    public int[,] GetLargestSection(int[,] map)
     {
-        int[,] newMap = new int[worldSize, worldSize];
-        for (int x = 0; x < worldSize; x++)
+        int largestCount = 0;
+        int num = 2;
+        for (int x = 0; x < map.GetLength(0); x++)
         {
-            for (int y = 0; y < worldSize; y++)
+            for (int y = 0; y < map.GetLength(1); y++)
+            {
+                if (map[x, y]==0)
+                {
+                    int tSize = 0;
+                    ArrayUtils.Flood2D(ref map, x, y, 0, 3, ref tSize);
+                    Debug.Log(num+"  "+tSize);
+                    num++;
+                    if (tSize > largestCount)
+                    {
+                        map = ArrayUtils.SwapValue2D(map, 2, 1);
+                        map = ArrayUtils.SwapValue2D(map, 3, 2);
+                        largestCount = tSize;
+                    }else
+                    {
+                        map = ArrayUtils.SwapValue2D(map, 3, 1);
+                    }
+                }
+            }
+        }
+        map = ArrayUtils.SwapValue2D(map, 2, 0);
+        return map;
+    }
+
+    public int[,] DoStep(int[,] oldMap)
+    {
+        int[,] newMap = new int[oldMap.GetLength(0), oldMap.GetLength(1)];
+        for (int x = 0; x < oldMap.GetLength(0); x++)
+        {
+            for (int y = 0; y < oldMap.GetLength(1); y++)
             {
                 int nbs = CountAliveNeighbours(oldMap, x, y);
                 if (oldMap[x, y] == 1)
@@ -57,7 +93,7 @@ public class DungeonGenerator : MonoBehaviour {
                     {
                         newMap[x, y] = 1;
                     }
-                } 
+                }
                 else
                 {
                     if (nbs > birthLimit)
@@ -89,7 +125,7 @@ public class DungeonGenerator : MonoBehaviour {
                 {
                     count = count + 1;
                 }
-                else if (map[neighbour_x, neighbour_y]==1)
+                else if (map[neighbour_x, neighbour_y] == 1)
                 {
                     count = count + 1;
                 }
@@ -102,16 +138,16 @@ public class DungeonGenerator : MonoBehaviour {
     {
         if (walls != null)
         {
-            for (int i = 0; i < walls.Count; i++)
+            for (int i = transform.childCount-1; i >=0; i--)
             {
-                DestroyImmediate(walls[i]);
+                DestroyImmediate(transform.GetChild(i).gameObject);
             }
         }
 
         walls = new List<GameObject>();
-        for (int i = 0; i < worldSize; i++)
+        for (int i = 0; i < worldMap.GetLength(0); i++)
         {
-            for (int j = 0; j < worldSize; j++)
+            for (int j = 0; j < worldMap.GetLength(1); j++)
             {
                 if (worldMap[i, j] == 0)
                     continue;
@@ -121,5 +157,6 @@ public class DungeonGenerator : MonoBehaviour {
                 walls.Add(g);
             }
         }
+        Debug.Log(transform.childCount);
     }
 }
