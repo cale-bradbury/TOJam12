@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[ExecuteInEditMode]
 public class DungeonGenerator : MonoBehaviour
 {
     FloorMaster[] floors;
@@ -21,6 +20,15 @@ public class DungeonGenerator : MonoBehaviour
     public int deathLimit = 3;
     public int simulationSteps = 10;
     public float mapWallChance = .6f;
+    public float weldDistance = .01f;
+    public float weldBucket = 1;
+
+    public Vector3 bumpDistance = Vector3.one;
+
+    void OnEnable()
+    {
+        Generate();
+    }
 
     public void Update()
     {
@@ -31,7 +39,6 @@ public class DungeonGenerator : MonoBehaviour
     [ContextMenu("Generate~")]
     public void Generate()
     {
-
         for (int i = transform.childCount-1; i>=0 ; i--)
         {
             DestroyImmediate(transform.GetChild(i).gameObject);
@@ -48,6 +55,11 @@ public class DungeonGenerator : MonoBehaviour
             floor.transform.parent = transform;
             DrawMap(floor);
             floors[i] = floor;
+            CombineMesh(floor);
+            PlaceStairsUp(floor);
+            PlaceStairsDown(floor);
+            floor.Enter();
+            //StartCoroutine(BumpWalls(floors[i]));
             if (i != 0)
             {
                 Vector3 offset = floors[i - 1].stairsUp.transform.position - floor.stairsDown.transform.position;
@@ -174,29 +186,33 @@ public class DungeonGenerator : MonoBehaviour
             {
                 if (floor.map[i, j] == 1)
                     continue;
-                GameObject prefab = GetPrefab(floor.map, i,j);
+                Vector3 rot;
+                GameObject prefab = GetPrefab(floor.map, i,j, out rot);
                 GameObject g = Instantiate<GameObject>(prefab);
                 g.transform.parent = floor.transform;
                 g.transform.localPosition = new Vector3(i * unitSize, 0, j * unitSize);
+                g.transform.localEulerAngles = rot;
                 floor.walls.Add(g);
             }
         }
-        PlaceStairsUp(floor);
-        PlaceStairsDown(floor);
     }
 
-    GameObject GetPrefab(int[,] map, int i, int j)
+    GameObject GetPrefab(int[,] map, int i, int j, out Vector3 rot)
     {
+        rot = Vector3.zero;
         if (map[i - 1, j] == 1 && map[i + 1, j] == 0 && map[i, j - 1] == 0 && map[i, j + 1] == 0)
         {
+            rot = Vector3.up * 270;
             return wallPrefab;
         }
         else if (map[i - 1, j] == 0 && map[i + 1, j] == 1 && map[i, j - 1] == 0 && map[i, j + 1] == 0)
         {
+            rot = Vector3.up * 90;
             return wallPrefab;
         }
         else if (map[i - 1, j] == 0 && map[i + 1, j] == 0 && map[i, j - 1] == 1 && map[i, j + 1] == 0)
         {
+            rot = Vector3.up * 180;
             return wallPrefab;
         }
         else if (map[i - 1, j] == 0 && map[i + 1, j] == 0 && map[i, j - 1] == 0 && map[i, j + 1] == 1)
@@ -205,14 +221,17 @@ public class DungeonGenerator : MonoBehaviour
         }
         else if (map[i - 1, j] == 1 && map[i + 1, j] == 0 && map[i, j - 1] == 1 && map[i, j + 1] == 0)
         {
+            rot = Vector3.up * 180;
             return cornerPrefab;
         }
         else if (map[i - 1, j] == 1 && map[i + 1, j] == 0 && map[i, j - 1] == 0 && map[i, j + 1] == 1)
         {
+            rot = Vector3.up * 270;
             return cornerPrefab;
         }
         else if (map[i - 1, j] == 0 && map[i + 1, j] == 1 && map[i, j - 1] == 1 && map[i, j + 1] == 0)
         {
+            rot = Vector3.up * 90;
             return cornerPrefab;
         }
         else if (map[i - 1, j] == 0 && map[i + 1, j] == 1 && map[i, j - 1] == 0 && map[i, j + 1] == 1)
@@ -221,6 +240,7 @@ public class DungeonGenerator : MonoBehaviour
         }
         else if (map[i - 1, j] == 1 && map[i + 1, j] == 1 && map[i, j - 1] == 1 && map[i, j + 1] == 0)
         {
+            rot = Vector3.up * 180;
             return uPrefab;
         }
         else if (map[i - 1, j] == 1 && map[i + 1, j] == 1 && map[i, j - 1] == 0 && map[i, j + 1] == 1)
@@ -229,10 +249,12 @@ public class DungeonGenerator : MonoBehaviour
         }
         else if (map[i - 1, j] == 1 && map[i + 1, j] == 0 && map[i, j - 1] == 1 && map[i, j + 1] == 1)
         {
+            rot = Vector3.up * 270;
             return uPrefab;
         }
         else if (map[i - 1, j] == 0 && map[i + 1, j] == 1 && map[i, j - 1] == 1 && map[i, j + 1] == 1)
         {
+            rot = Vector3.up * 90;
             return uPrefab;
         }
         else if (map[i - 1, j] == 1 && map[i + 1, j] == 1 && map[i, j - 1] == 0 && map[i, j + 1] == 0)
@@ -241,6 +263,7 @@ public class DungeonGenerator : MonoBehaviour
         }
         else if (map[i - 1, j] == 0 && map[i + 1, j] == 0 && map[i, j - 1] == 1 && map[i, j + 1] == 1)
         {
+            rot = Vector3.up * 180;
             return oPrefab;
         }
 
@@ -285,6 +308,150 @@ public class DungeonGenerator : MonoBehaviour
         pos.x = Mathf.FloorToInt(pos.x);
         pos.z = Mathf.FloorToInt(pos.z);
         floor.stairsDown.transform.localPosition = pos;
+    }
+    
+    void CombineMesh(FloorMaster floor)
+    {
+        MeshFilter[] meshFilters = floor.GetComponentsInChildren<MeshFilter>();
+        List<CombineInstance> combine = new List<CombineInstance>();
+        int i = 0;
+        MeshFilter mf = meshFilters[i];
+        int verts = 0;
+        Mesh m;
+        while (i < meshFilters.Length)
+        {
+            if(verts+ meshFilters[i].sharedMesh.vertexCount > 60000)
+            {
+                m = new Mesh();
+                m.CombineMeshes(combine.ToArray());
+                AutoWeld(m, weldDistance, weldBucket);
+                BumpWalls(m);
+                mf.mesh = m;
+                mf.gameObject.SetActive(true); mf.transform.localPosition = mf.transform.localEulerAngles = Vector3.zero;
+                mf = meshFilters[i];
+                verts = 0;
+                combine = new List<CombineInstance>();
+            }
+            verts += meshFilters[i].sharedMesh.vertexCount;
+            CombineInstance c = new CombineInstance();
+            c.mesh = meshFilters[i].sharedMesh;
+            c.transform = meshFilters[i].transform.localToWorldMatrix;
+            combine.Add(c);
+            meshFilters[i].gameObject.SetActive(false);
+            i++;
+        }
+
+        m = new Mesh();
+        m.CombineMeshes(combine.ToArray());
+        AutoWeld(m, weldDistance, weldBucket);
+        BumpWalls(m);
+        mf.mesh = m;
+        mf.gameObject.SetActive(true);
+        mf.transform.localPosition = mf.transform.localEulerAngles = Vector3.zero;
+
+        for (int j = 0; j < meshFilters.Length; j++)
+        {
+            if (!meshFilters[j].gameObject.activeSelf)
+            {
+                Destroy(meshFilters[j].GetComponent<MeshRenderer>());
+                Destroy(meshFilters[j]);
+                meshFilters[j].gameObject.SetActive(true);
+            }
+        }
+
+    }
+
+    public static void AutoWeld(Mesh mesh, float threshold, float bucketStep)
+    {
+        Vector3[] oldVertices = mesh.vertices;
+        Vector3[] newVertices = new Vector3[oldVertices.Length];
+        int[] old2new = new int[oldVertices.Length];
+        int newSize = 0;
+
+        // Find AABB
+        Vector3 min = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
+        Vector3 max = new Vector3(float.MinValue, float.MinValue, float.MinValue);
+        for (int i = 0; i < oldVertices.Length; i++)
+        {
+            if (oldVertices[i].x < min.x) min.x = oldVertices[i].x;
+            if (oldVertices[i].y < min.y) min.y = oldVertices[i].y;
+            if (oldVertices[i].z < min.z) min.z = oldVertices[i].z;
+            if (oldVertices[i].x > max.x) max.x = oldVertices[i].x;
+            if (oldVertices[i].y > max.y) max.y = oldVertices[i].y;
+            if (oldVertices[i].z > max.z) max.z = oldVertices[i].z;
+        }
+
+        // Make cubic buckets, each with dimensions "bucketStep"
+        int bucketSizeX = Mathf.FloorToInt((max.x - min.x) / bucketStep) + 1;
+        int bucketSizeY = Mathf.FloorToInt((max.y - min.y) / bucketStep) + 1;
+        int bucketSizeZ = Mathf.FloorToInt((max.z - min.z) / bucketStep) + 1;
+        Debug.Log(oldVertices.Length + "  " + max + "  " + bucketStep);
+        List<int>[,,] buckets = new List<int>[bucketSizeX, bucketSizeY, bucketSizeZ];
+
+        // Make new vertices
+        for (int i = 0; i < oldVertices.Length; i++)
+        {
+            // Determine which bucket it belongs to
+            int x = Mathf.FloorToInt((oldVertices[i].x - min.x) / bucketStep);
+            int y = Mathf.FloorToInt((oldVertices[i].y - min.y) / bucketStep);
+            int z = Mathf.FloorToInt((oldVertices[i].z - min.z) / bucketStep);
+
+            // Check to see if it's already been added
+            if (buckets[x, y, z] == null)
+                buckets[x, y, z] = new List<int>(); // Make buckets lazily
+
+            for (int j = 0; j < buckets[x, y, z].Count; j++)
+            {
+                Vector3 to = newVertices[buckets[x, y, z][j]] - oldVertices[i];
+                if (Vector3.SqrMagnitude(to) < threshold)
+                {
+                    old2new[i] = buckets[x, y, z][j];
+                    goto skip; // Skip to next old vertex if this one is already there
+                }
+            }
+
+            // Add new vertex
+            newVertices[newSize] = oldVertices[i];
+            buckets[x, y, z].Add(newSize);
+            old2new[i] = newSize;
+            newSize++;
+
+        skip:;
+        }
+
+        // Make new triangles
+        int[] oldTris = mesh.triangles;
+        int[] newTris = new int[oldTris.Length];
+        for (int i = 0; i < oldTris.Length; i++)
+        {
+            newTris[i] = old2new[oldTris[i]];
+        }
+
+        Vector3[] finalVertices = new Vector3[newSize];
+        for (int i = 0; i < newSize; i++)
+            finalVertices[i] = newVertices[i];
+
+        mesh.Clear();
+        mesh.vertices = finalVertices;
+        mesh.triangles = newTris;
+        mesh.RecalculateNormals();
+    }
+
+    void BumpWalls(Mesh m)
+    {
+
+        List<Vector3> verts = new List<Vector3>();
+        Vector3[] old = m.vertices;
+        Vector3[] nor = m.normals;
+        int count = m.vertices.Length;
+        for (int j = 0; j < count; j++)
+        {
+            Vector3 v = old[j];
+            v += Vector3.Scale(nor[j]*Random.value, bumpDistance);
+            verts.Add(v);
+        }
+        m.SetVertices(verts);
+        m.RecalculateNormals();
     }
 
 }
