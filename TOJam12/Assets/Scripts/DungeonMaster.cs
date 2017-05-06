@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DungeonMaster : MonoBehaviour {
     public static DungeonMaster instance;
-    public GameObject player;
+    public PlayerScript player;
     public DungeonGenerator generator;
     
 	void Awake () {

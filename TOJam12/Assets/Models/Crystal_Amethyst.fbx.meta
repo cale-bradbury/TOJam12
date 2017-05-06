@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 8ae8791638b6049289b33f7b6ad9192c
-timeCreated: 1494110772
+guid: 4ba73156112dde34bad2027a091ed29b
+timeCreated: 1494100886
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -23,8 +23,8 @@ ModelImporter:
     100030: transform5
     100032: transform6
     100034: transform7
-    400000: //RootNode
-    400002: Crystal_Amethyst
+    400000: Crystal_Amethyst
+    400002: //RootNode
     400004: Crystal_Amethyst1
     400006: Crystal_Amethyst3
     400008: Crystal_Amethyst5
@@ -70,7 +70,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 10
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1

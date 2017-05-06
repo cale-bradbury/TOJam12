@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 3caec07d8a2014881866e50adfd76004
-timeCreated: 1494110768
+guid: e986b843cb35a4c48845dc2d47e97464
+timeCreated: 1494107194
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -11,8 +11,8 @@ ModelImporter:
     100006: pasted__pasted__Rock_Stalagmite
     100008: pasted__Rock_Stalagmite
     100010: pasted__Rock_Stalagmite 1
-    100012: Rock_Stalagmite
-    100014: //RootNode
+    100012: //RootNode
+    100014: Rock_Stalagmite
     100016: transform1
     100018: transform2
     100020: transform3
@@ -22,8 +22,8 @@ ModelImporter:
     400006: pasted__pasted__Rock_Stalagmite
     400008: pasted__Rock_Stalagmite
     400010: pasted__Rock_Stalagmite 1
-    400012: Rock_Stalagmite
-    400014: //RootNode
+    400012: //RootNode
+    400014: Rock_Stalagmite
     400016: transform1
     400018: transform2
     400020: transform3
