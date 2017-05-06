@@ -1,0 +1,384 @@
+fileFormatVersion: 2
+guid: 57a4fa5ad7c8e22458766dfe80fbd18c
+timeCreated: 1494100887
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Crystal_Fluorite
+    100004: Crystal_Fluorite2
+    100006: Crystal_Fluorite4
+    100008: Crystal_Fluorite6
+    100010: group
+    100012: group1
+    100014: group10
+    100016: group11
+    100018: group12
+    100020: group13
+    100022: group14
+    100024: group15
+    100026: group16
+    100028: group17
+    100030: group18
+    100032: group19
+    100034: group2
+    100036: group20
+    100038: group21
+    100040: group22
+    100042: group23
+    100044: group24
+    100046: group25
+    100048: group3
+    100050: group4
+    100052: group5
+    100054: group6
+    100056: group7
+    100058: group8
+    100060: group9
+    100062: pasted__Crystal_Fluorite2
+    100064: pasted__Crystal_Fluorite2 1
+    100066: pasted__Crystal_Fluorite4
+    100068: pasted__Crystal_Fluorite4 1
+    100070: pasted__Crystal_Fluorite4 2
+    100072: pasted__Crystal_Fluorite8
+    100074: pasted__group
+    100076: pasted__group 1
+    100078: pasted__group 2
+    100080: pasted__group 3
+    100082: pasted__group1
+    100084: pasted__group10
+    100086: pasted__group13
+    100088: pasted__group13 1
+    100090: pasted__group13 2
+    100092: pasted__group13 3
+    100094: pasted__group23
+    100096: pasted__group23 1
+    100098: pasted__group3
+    100100: pasted__group5
+    100102: pasted__group7
+    100104: pasted__group7 1
+    100106: pasted__group7 2
+    100108: pasted__group7 3
+    100110: pasted__group7 4
+    100112: pasted__group7 5
+    100114: pasted__group8
+    100116: pasted__group9
+    100118: pasted__pasted__Crystal_Fluorite2
+    100120: pasted__pasted__Crystal_Fluorite2 1
+    100122: pasted__pasted__Crystal_Fluorite2 2
+    100124: pasted__pasted__Crystal_Fluorite2 3
+    100126: pasted__pasted__Crystal_Fluorite7
+    100128: pasted__pasted__group
+    100130: pasted__pasted__group 1
+    100132: pasted__pasted__group1
+    100134: pasted__pasted__group1 1
+    100136: pasted__pasted__group1 2
+    100138: pasted__pasted__group1 3
+    100140: pasted__pasted__group1 4
+    100142: pasted__pasted__group1 5
+    100144: pasted__pasted__group3
+    100146: pasted__pasted__group3 1
+    100148: pasted__pasted__group3 2
+    100150: pasted__pasted__group3 3
+    100152: pasted__pasted__group7
+    100154: pasted__pasted__group7 1
+    100156: pasted__pasted__group7 2
+    100158: pasted__pasted__group8
+    100160: pasted__pasted__group9
+    100162: pasted__pasted__pasted__Crystal_Fluorite2
+    100164: pasted__pasted__pasted__Crystal_Fluorite2 1
+    100166: pasted__pasted__pasted__group
+    100168: pasted__pasted__pasted__group 1
+    100170: pasted__pasted__pasted__group 2
+    100172: pasted__pasted__pasted__group 3
+    100174: pasted__pasted__pasted__group 4
+    100176: pasted__pasted__pasted__group 5
+    100178: pasted__pasted__pasted__group 6
+    100180: pasted__pasted__pasted__group 7
+    100182: pasted__pasted__pasted__group 8
+    100184: pasted__pasted__pasted__group 9
+    100186: pasted__pasted__pasted__group1
+    100188: pasted__pasted__pasted__group1 1
+    100190: pasted__pasted__pasted__group1 2
+    100192: pasted__pasted__pasted__group7
+    100194: pasted__pasted__pasted__group8
+    100196: pasted__pasted__pasted__pasted__Crystal_Fluorite2
+    100198: pasted__pasted__pasted__pasted__Crystal_Fluorite2 1
+    100200: pasted__pasted__pasted__pasted__Crystal_Fluorite2 2
+    100202: pasted__pasted__pasted__pasted__Crystal_Fluorite2 3
+    100204: pasted__pasted__pasted__pasted__Crystal_Fluorite2 4
+    100206: pasted__pasted__pasted__pasted__Crystal_Fluorite2 5
+    100208: pasted__pasted__pasted__pasted__Crystal_Fluorite2 6
+    100210: pasted__pasted__pasted__pasted__Crystal_Fluorite2 7
+    100212: pasted__pasted__pasted__pasted__Crystal_Fluorite2 8
+    100214: pasted__pasted__pasted__pasted__Crystal_Fluorite2 9
+    100216: pasted__pasted__pasted__pasted__group
+    100218: pasted__pasted__pasted__pasted__group 1
+    100220: pasted__pasted__pasted__pasted__group 2
+    100222: pasted__pasted__pasted__pasted__group1
+    100224: pasted__pasted__pasted__pasted__group7
+    100226: pasted__pasted__pasted__pasted__pasted__Crystal_Fluorite2
+    100228: pasted__pasted__pasted__pasted__pasted__Crystal_Fluorite2 1
+    100230: pasted__pasted__pasted__pasted__pasted__Crystal_Fluorite2 2
+    100232: pasted__pasted__pasted__pasted__pasted__group
+    100234: pasted__pasted__pasted__pasted__pasted__group1
+    100236: pasted__pasted__pasted__pasted__pasted__pasted__Crystal_Fluorite2
+    100238: pasted__pasted__pasted__pasted__pasted__pasted__group
+    100240: pasted__pasted__pasted__pasted__pasted__pasted__pasted__Crystal_Fluorite2
+    100242: transform1
+    100244: transform10
+    100246: transform11
+    100248: transform12
+    100250: transform13
+    100252: transform14
+    100254: transform15
+    100256: transform16
+    100258: transform17
+    100260: transform18
+    100262: transform19
+    100264: transform2
+    100266: transform20
+    100268: transform21
+    100270: transform22
+    100272: transform23
+    100274: transform24
+    100276: transform25
+    100278: transform26
+    100280: transform27
+    100282: transform28
+    100284: transform29
+    100286: transform3
+    100288: transform30
+    100290: transform31
+    100292: transform4
+    100294: transform5
+    100296: transform6
+    100298: transform7
+    100300: transform8
+    100302: transform9
+    400000: //RootNode
+    400002: Crystal_Fluorite
+    400004: Crystal_Fluorite2
+    400006: Crystal_Fluorite4
+    400008: Crystal_Fluorite6
+    400010: group
+    400012: group1
+    400014: group10
+    400016: group11
+    400018: group12
+    400020: group13
+    400022: group14
+    400024: group15
+    400026: group16
+    400028: group17
+    400030: group18
+    400032: group19
+    400034: group2
+    400036: group20
+    400038: group21
+    400040: group22
+    400042: group23
+    400044: group24
+    400046: group25
+    400048: group3
+    400050: group4
+    400052: group5
+    400054: group6
+    400056: group7
+    400058: group8
+    400060: group9
+    400062: pasted__Crystal_Fluorite2
+    400064: pasted__Crystal_Fluorite2 1
+    400066: pasted__Crystal_Fluorite4
+    400068: pasted__Crystal_Fluorite4 1
+    400070: pasted__Crystal_Fluorite4 2
+    400072: pasted__Crystal_Fluorite8
+    400074: pasted__group
+    400076: pasted__group 1
+    400078: pasted__group 2
+    400080: pasted__group 3
+    400082: pasted__group1
+    400084: pasted__group10
+    400086: pasted__group13
+    400088: pasted__group13 1
+    400090: pasted__group13 2
+    400092: pasted__group13 3
+    400094: pasted__group23
+    400096: pasted__group23 1
+    400098: pasted__group3
+    400100: pasted__group5
+    400102: pasted__group7
+    400104: pasted__group7 1
+    400106: pasted__group7 2
+    400108: pasted__group7 3
+    400110: pasted__group7 4
+    400112: pasted__group7 5
+    400114: pasted__group8
+    400116: pasted__group9
+    400118: pasted__pasted__Crystal_Fluorite2
+    400120: pasted__pasted__Crystal_Fluorite2 1
+    400122: pasted__pasted__Crystal_Fluorite2 2
+    400124: pasted__pasted__Crystal_Fluorite2 3
+    400126: pasted__pasted__Crystal_Fluorite7
+    400128: pasted__pasted__group
+    400130: pasted__pasted__group 1
+    400132: pasted__pasted__group1
+    400134: pasted__pasted__group1 1
+    400136: pasted__pasted__group1 2
+    400138: pasted__pasted__group1 3
+    400140: pasted__pasted__group1 4
+    400142: pasted__pasted__group1 5
+    400144: pasted__pasted__group3
+    400146: pasted__pasted__group3 1
+    400148: pasted__pasted__group3 2
+    400150: pasted__pasted__group3 3
+    400152: pasted__pasted__group7
+    400154: pasted__pasted__group7 1
+    400156: pasted__pasted__group7 2
+    400158: pasted__pasted__group8
+    400160: pasted__pasted__group9
+    400162: pasted__pasted__pasted__Crystal_Fluorite2
+    400164: pasted__pasted__pasted__Crystal_Fluorite2 1
+    400166: pasted__pasted__pasted__group
+    400168: pasted__pasted__pasted__group 1
+    400170: pasted__pasted__pasted__group 2
+    400172: pasted__pasted__pasted__group 3
+    400174: pasted__pasted__pasted__group 4
+    400176: pasted__pasted__pasted__group 5
+    400178: pasted__pasted__pasted__group 6
+    400180: pasted__pasted__pasted__group 7
+    400182: pasted__pasted__pasted__group 8
+    400184: pasted__pasted__pasted__group 9
+    400186: pasted__pasted__pasted__group1
+    400188: pasted__pasted__pasted__group1 1
+    400190: pasted__pasted__pasted__group1 2
+    400192: pasted__pasted__pasted__group7
+    400194: pasted__pasted__pasted__group8
+    400196: pasted__pasted__pasted__pasted__Crystal_Fluorite2
+    400198: pasted__pasted__pasted__pasted__Crystal_Fluorite2 1
+    400200: pasted__pasted__pasted__pasted__Crystal_Fluorite2 2
+    400202: pasted__pasted__pasted__pasted__Crystal_Fluorite2 3
+    400204: pasted__pasted__pasted__pasted__Crystal_Fluorite2 4
+    400206: pasted__pasted__pasted__pasted__Crystal_Fluorite2 5
+    400208: pasted__pasted__pasted__pasted__Crystal_Fluorite2 6
+    400210: pasted__pasted__pasted__pasted__Crystal_Fluorite2 7
+    400212: pasted__pasted__pasted__pasted__Crystal_Fluorite2 8
+    400214: pasted__pasted__pasted__pasted__Crystal_Fluorite2 9
+    400216: pasted__pasted__pasted__pasted__group
+    400218: pasted__pasted__pasted__pasted__group 1
+    400220: pasted__pasted__pasted__pasted__group 2
+    400222: pasted__pasted__pasted__pasted__group1
+    400224: pasted__pasted__pasted__pasted__group7
+    400226: pasted__pasted__pasted__pasted__pasted__Crystal_Fluorite2
+    400228: pasted__pasted__pasted__pasted__pasted__Crystal_Fluorite2 1
+    400230: pasted__pasted__pasted__pasted__pasted__Crystal_Fluorite2 2
+    400232: pasted__pasted__pasted__pasted__pasted__group
+    400234: pasted__pasted__pasted__pasted__pasted__group1
+    400236: pasted__pasted__pasted__pasted__pasted__pasted__Crystal_Fluorite2
+    400238: pasted__pasted__pasted__pasted__pasted__pasted__group
+    400240: pasted__pasted__pasted__pasted__pasted__pasted__pasted__Crystal_Fluorite2
+    400242: transform1
+    400244: transform10
+    400246: transform11
+    400248: transform12
+    400250: transform13
+    400252: transform14
+    400254: transform15
+    400256: transform16
+    400258: transform17
+    400260: transform18
+    400262: transform19
+    400264: transform2
+    400266: transform20
+    400268: transform21
+    400270: transform22
+    400272: transform23
+    400274: transform24
+    400276: transform25
+    400278: transform26
+    400280: transform27
+    400282: transform28
+    400284: transform29
+    400286: transform3
+    400288: transform30
+    400290: transform31
+    400292: transform4
+    400294: transform5
+    400296: transform6
+    400298: transform7
+    400300: transform8
+    400302: transform9
+    2300000: pasted__Crystal_Fluorite8
+    3300000: pasted__Crystal_Fluorite8
+    4300000: pasted__Crystal_Fluorite8
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 10
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 1
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

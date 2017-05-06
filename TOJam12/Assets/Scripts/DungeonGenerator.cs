@@ -22,8 +22,11 @@ public class DungeonGenerator : MonoBehaviour
     public float mapWallChance = .6f;
     public float weldDistance = .01f;
     public float weldBucket = 1;
-
     public Vector3 bumpDistance = Vector3.one;
+    public LayerMask wallLayer;
+    public GemSpawnInfo[] gems;
+    Vector3[] directions = new Vector3[] {Vector3.forward, Vector3.back, Vector3.right, Vector3.left, Vector3.up, Vector3.down };
+
 
     void OnEnable()
     {
@@ -51,14 +54,20 @@ public class DungeonGenerator : MonoBehaviour
 
             GameObject g = new GameObject();
             FloorMaster floor = g.AddComponent<FloorMaster>();
+            floor.gemHolder = new GameObject("Gems").transform;
+            floor.wallHolder = new GameObject("Walls").transform;
+            floor.gemHolder.parent = floor.wallHolder.parent = floor.transform;
+            floor.gemHolder.localPosition = floor.wallHolder.localPosition = Vector3.zero;
             floor.map = worldMap;
             floor.transform.parent = transform;
             DrawMap(floor);
-            floors[i] = floor;
+            floor.floorNumber = i;
             CombineMesh(floor);
             PlaceStairsUp(floor);
             PlaceStairsDown(floor);
+            PlaceGems(floor);
             floor.Enter();
+            floors[i] = floor;
             //StartCoroutine(BumpWalls(floors[i]));
             if (i != 0)
             {
@@ -189,7 +198,7 @@ public class DungeonGenerator : MonoBehaviour
                 Vector3 rot;
                 GameObject prefab = GetPrefab(floor.map, i,j, out rot);
                 GameObject g = Instantiate<GameObject>(prefab);
-                g.transform.parent = floor.transform;
+                g.transform.parent = floor.wallHolder;
                 g.transform.localPosition = new Vector3(i * unitSize, 0, j * unitSize);
                 g.transform.localEulerAngles = rot;
                 floor.walls.Add(g);
@@ -270,46 +279,6 @@ public class DungeonGenerator : MonoBehaviour
         return floorPrefab;
     }
 
-    void PlaceStairsUp(FloorMaster floor)
-    {
-        int x = 0, y = 0 ;
-        while (floor.map[x, y] != 0)
-        {
-            x = Mathf.FloorToInt(Random.value * worldSize + 1);
-            y = Mathf.FloorToInt(Random.value * worldSize + 1);
-        }
-        floor.stairsUp = Instantiate<GameObject>(stairsUpPrefab);
-        floor.stairsUp.transform.parent = floor.transform;
-        floor.stairsUp.transform.localPosition = new Vector3(x, 0, y);
-    }
-
-    void PlaceStairsDown(FloorMaster floor, int tries = 25)
-    {
-        Vector3 pos = floor.stairsUp.transform.localPosition;
-        float dist = 0;
-        for (int i = 0; i < tries; i++)
-        {
-            Vector3 v = new Vector3(Random.value * worldSize + 1, 0, Random.value * worldSize + 1);
-            if(floor.map[Mathf.FloorToInt(v.x), Mathf.FloorToInt(v.z)] == 0)
-            {
-                float d = Vector3.Distance(v, pos);
-                if (d > dist)
-                {
-                    pos = v;
-                    dist = d;
-                }
-            }else
-            {
-                tries--;
-            }
-        }
-        floor.stairsDown = Instantiate<GameObject>(stairsDownPrefab);
-        floor.stairsDown.transform.parent = floor.transform;
-        pos.x = Mathf.FloorToInt(pos.x);
-        pos.z = Mathf.FloorToInt(pos.z);
-        floor.stairsDown.transform.localPosition = pos;
-    }
-    
     void CombineMesh(FloorMaster floor)
     {
         MeshFilter[] meshFilters = floor.GetComponentsInChildren<MeshFilter>();
@@ -385,7 +354,7 @@ public class DungeonGenerator : MonoBehaviour
         int bucketSizeX = Mathf.FloorToInt((max.x - min.x) / bucketStep) + 1;
         int bucketSizeY = Mathf.FloorToInt((max.y - min.y) / bucketStep) + 1;
         int bucketSizeZ = Mathf.FloorToInt((max.z - min.z) / bucketStep) + 1;
-        Debug.Log(oldVertices.Length + "  " + max + "  " + bucketStep);
+
         List<int>[,,] buckets = new List<int>[bucketSizeX, bucketSizeY, bucketSizeZ];
 
         // Make new vertices
@@ -454,4 +423,79 @@ public class DungeonGenerator : MonoBehaviour
         m.RecalculateNormals();
     }
 
+    void PlaceStairsUp(FloorMaster floor)
+    {
+        int x = 0, y = 0;
+        while (floor.map[x, y] != 0)
+        {
+            x = Mathf.FloorToInt(Random.value * worldSize + 1);
+            y = Mathf.FloorToInt(Random.value * worldSize + 1);
+        }
+        floor.stairsUp = Instantiate<GameObject>(stairsUpPrefab);
+        floor.stairsUp.transform.parent = floor.transform;
+        floor.stairsUp.transform.localPosition = new Vector3(x, 0, y);
+    }
+
+    void PlaceStairsDown(FloorMaster floor, int tries = 25)
+    {
+        Vector3 pos = floor.stairsUp.transform.localPosition;
+        float dist = 0;
+        for (int i = 0; i < tries; i++)
+        {
+            Vector3 v = new Vector3(Random.value * worldSize + 1, 0, Random.value * worldSize + 1);
+            if (floor.map[Mathf.FloorToInt(v.x), Mathf.FloorToInt(v.z)] == 0)
+            {
+                float d = Vector3.Distance(v, pos);
+                if (d > dist)
+                {
+                    pos = v;
+                    dist = d;
+                }
+            }
+            else
+            {
+                tries--;
+            }
+        }
+        floor.stairsDown = Instantiate<GameObject>(stairsDownPrefab);
+        floor.stairsDown.transform.parent = floor.transform;
+        pos.x = Mathf.FloorToInt(pos.x);
+        pos.z = Mathf.FloorToInt(pos.z);
+        floor.stairsDown.transform.localPosition = pos;
+    }
+
+    void PlaceGems(FloorMaster floor)
+    {
+        GemSpawnInfo info = gems[floor.floorNumber];
+        for (int i = 0; i < info.prefabs.Length; i++)
+        {
+            for (int j = 0; j < info.counts[i]; j++)
+            {
+                Vector3 pos = FindEmpty(floor.map);
+                GemScript g = Instantiate<GemScript>(info.prefabs[i]);
+                g.transform.parent = floor.gemHolder;
+                RaycastHit hit;
+                Physics.Raycast(pos, directions[Mathf.FloorToInt(Random.value * directions.Length)], out hit, 1000, wallLayer);
+                g.transform.localPosition = hit.point;
+            }
+        }
+    }
+
+    Vector3 FindEmpty(int[,] map)
+    {
+        int x = 0, y = 0;
+        while (map[x, y] == 1)
+        {
+            x = Mathf.FloorToInt(Random.value * map.GetLength(0));
+            y = Mathf.FloorToInt(Random.value * map.GetLength(1));
+        }
+        return new Vector3(x - .5f + Random.value, Random.value, y-.5f+Random.value);
+    }
+}
+
+[System.Serializable]
+public struct GemSpawnInfo
+{
+    public GemScript[] prefabs;
+    public int[] counts;
 }
