@@ -5,7 +5,8 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class DungeonGenerator : MonoBehaviour
 {
-
+    FloorMaster[] floors;
+    public int floorCount = 6;
     public float unitSize = 1;
     public GameObject floorPrefab;
     public GameObject wallPrefab;
@@ -14,9 +15,7 @@ public class DungeonGenerator : MonoBehaviour
     public GameObject oPrefab;
     public GameObject stairsDownPrefab;
     public GameObject stairsUpPrefab;
-    GameObject stairsUp;
-    GameObject stairsDown;
-    List<GameObject> walls;
+
     public int worldSize = 20;
     public int birthLimit = 4;
     public int deathLimit = 3;
@@ -32,6 +31,34 @@ public class DungeonGenerator : MonoBehaviour
     [ContextMenu("Generate~")]
     public void Generate()
     {
+
+        for (int i = transform.childCount-1; i>=0 ; i--)
+        {
+            DestroyImmediate(transform.GetChild(i).gameObject);
+        }
+
+        floors = new FloorMaster[floorCount];
+        for (int i = 0; i < floorCount; i++)
+        {
+            int[,] worldMap = GenerateMap();
+
+            GameObject g = new GameObject();
+            FloorMaster floor = g.AddComponent<FloorMaster>();
+            floor.map = worldMap;
+            floor.transform.parent = transform;
+            DrawMap(floor);
+            floors[i] = floor;
+            if (i != 0)
+            {
+                Vector3 offset = floors[i - 1].stairsUp.transform.position - floor.stairsDown.transform.position;
+                offset.y = -i*10;
+                floor.transform.position = offset;
+            }
+        }
+    }
+
+    int[,] GenerateMap()
+    {
         int[,] worldMap = new int[worldSize, worldSize];
         for (int i = 0; i < worldSize; i++)
         {
@@ -44,10 +71,10 @@ public class DungeonGenerator : MonoBehaviour
         {
             worldMap = DoStep(worldMap);
         }
-        int[,] map = ArrayUtils.Create2D(1, worldSize+2, worldSize+2);
+        int[,] map = ArrayUtils.Create2D(1, worldSize + 2, worldSize + 2);
         map = ArrayUtils.Merge2D(map, worldMap, 1, 1);
         map = GetLargestSection(map);
-        DrawMap(map);
+        return map;
     }
 
     public int[,] GetLargestSection(int[,] map)
@@ -138,32 +165,24 @@ public class DungeonGenerator : MonoBehaviour
         return count;
     }
 
-    void DrawMap(int[,] worldMap)
+    void DrawMap(FloorMaster floor)
     {
-        if (walls != null)
+        floor.walls = new List<GameObject>();
+        for (int i = 1; i < floor.map.GetLength(0)-1; i++)
         {
-            for (int i = transform.childCount-1; i >=0; i--)
+            for (int j = 1; j < floor.map.GetLength(1)-1; j++)
             {
-                DestroyImmediate(transform.GetChild(i).gameObject);
-            }
-        }
-
-        walls = new List<GameObject>();
-        for (int i = 1; i < worldMap.GetLength(0)-1; i++)
-        {
-            for (int j = 1; j < worldMap.GetLength(1)-1; j++)
-            {
-                if (worldMap[i, j] == 1)
+                if (floor.map[i, j] == 1)
                     continue;
-                GameObject prefab = GetPrefab(worldMap, i,j);
+                GameObject prefab = GetPrefab(floor.map, i,j);
                 GameObject g = Instantiate<GameObject>(prefab);
-                g.transform.parent = transform;
+                g.transform.parent = floor.transform;
                 g.transform.localPosition = new Vector3(i * unitSize, 0, j * unitSize);
-                walls.Add(g);
+                floor.walls.Add(g);
             }
         }
-        PlaceStairsUp(worldMap);
-        PlaceStairsDown(worldMap);
+        PlaceStairsUp(floor);
+        PlaceStairsDown(floor);
     }
 
     GameObject GetPrefab(int[,] map, int i, int j)
@@ -228,27 +247,27 @@ public class DungeonGenerator : MonoBehaviour
         return floorPrefab;
     }
 
-    void PlaceStairsUp(int[,] map)
+    void PlaceStairsUp(FloorMaster floor)
     {
         int x = 0, y = 0 ;
-        while (map[x, y] != 0)
+        while (floor.map[x, y] != 0)
         {
             x = Mathf.FloorToInt(Random.value * worldSize + 1);
             y = Mathf.FloorToInt(Random.value * worldSize + 1);
         }
-        stairsUp = Instantiate<GameObject>(stairsUpPrefab);
-        stairsUp.transform.parent = transform;
-        stairsUp.transform.localPosition = new Vector3(x, 0, y);
+        floor.stairsUp = Instantiate<GameObject>(stairsUpPrefab);
+        floor.stairsUp.transform.parent = floor.transform;
+        floor.stairsUp.transform.localPosition = new Vector3(x, 0, y);
     }
 
-    void PlaceStairsDown(int[,] map, int tries = 25)
+    void PlaceStairsDown(FloorMaster floor, int tries = 25)
     {
-        Vector3 pos = stairsUp.transform.localPosition;
+        Vector3 pos = floor.stairsUp.transform.localPosition;
         float dist = 0;
         for (int i = 0; i < tries; i++)
         {
             Vector3 v = new Vector3(Random.value * worldSize + 1, 0, Random.value * worldSize + 1);
-            if(map[Mathf.FloorToInt(v.x), Mathf.FloorToInt(v.z)] == 0)
+            if(floor.map[Mathf.FloorToInt(v.x), Mathf.FloorToInt(v.z)] == 0)
             {
                 float d = Vector3.Distance(v, pos);
                 if (d > dist)
@@ -261,11 +280,11 @@ public class DungeonGenerator : MonoBehaviour
                 tries--;
             }
         }
-        stairsDown = Instantiate<GameObject>(stairsDownPrefab);
-        stairsDown.transform.parent = transform;
+        floor.stairsDown = Instantiate<GameObject>(stairsDownPrefab);
+        floor.stairsDown.transform.parent = floor.transform;
         pos.x = Mathf.FloorToInt(pos.x);
         pos.z = Mathf.FloorToInt(pos.z);
-        stairsDown.transform.localPosition = pos;
+        floor.stairsDown.transform.localPosition = pos;
     }
 
 }
