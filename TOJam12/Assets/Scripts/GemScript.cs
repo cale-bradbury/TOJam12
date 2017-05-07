@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class GemScript : MonoBehaviour {
 
-    public enum GemType
-    {
-        Fluorite,
-        Amethyst
-    }
-    public GemType gemType;
+    public Inventory.Items gemType;
     public string description;
     
     void Start()

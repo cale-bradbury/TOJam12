@@ -31,15 +31,34 @@ public class DungeonGenerator : MonoBehaviour
     void OnEnable()
     {
         Generate();
-        EnterFloor(0);
-    }
-
-    public void EnterFloor(int index)
-    {
-        floors[floorIndex].gameObject.SetActive(false);
-        floorIndex = index;
+        CameraFade.StartAlphaFade(Color.black, true, 4);
+        floorIndex = 0;
         floors[floorIndex].gameObject.SetActive(true);
         player.transform.position = floors[floorIndex].stairsUp.transform.position;
+    }
+    bool fading = false;
+    public void EnterFloor(int index)
+    {
+        Debug.Log(fading);
+        if (fading)
+            return;
+        fading = true;
+        CameraFade.StartAlphaFade(Color.black, false, .5f, 0, ()=>
+        {
+            floors[floorIndex].gameObject.SetActive(false);
+            floorIndex = index;
+            floors[floorIndex].gameObject.SetActive(true);
+            player.transform.position = floors[floorIndex].stairsUp.transform.position;
+            player.transform.rotation = floors[floorIndex].stairsUp.transform.rotation;
+            fading = false;
+            Invoke("FadeIn", 0f);
+        });
+    }
+
+    void FadeIn()
+    {
+
+        CameraFade.StartAlphaFade(Color.black, true, 1f);
     }
 
     public void NextFloor()
@@ -456,21 +475,25 @@ public class DungeonGenerator : MonoBehaviour
         floor.stairsUp.gen = this;
         floor.stairsUp.transform.parent = floor.transform;
         floor.stairsUp.transform.localPosition = pos;
-        floor.stairsUp.transform.localEulerAngles = Vector3.up * Mathf.Floor(Random.value * 4) * 90;
+        if (floor.floorNumber != 0)
+            floor.stairsUp.transform.localEulerAngles = floors[floor.floorNumber - 1].stairsUp.transform.localEulerAngles;
     }
 
     void PlaceStairsDown(FloorMaster floor, int tries = 20)
     {
         Vector3 pos = floor.stairsUp.transform.localPosition;
         float dist = 0;
-        for (int i = 0; i < tries; i++)
+        while (dist == 0)
         {
-            Vector3 v = floor.FindEmptyNoWall(false);
-            float d = Vector3.Distance(v, pos);
-            if (d > dist)
+            for (int i = 0; i < tries; i++)
             {
-                pos = v;
-                dist = d;
+                Vector3 v = floor.FindEmptyNoWall(false);
+                float d = Vector3.Distance(v, pos);
+                if (d > dist)
+                {
+                    pos = v;
+                    dist = d;
+                }
             }
         }
         floor.stairsDown = Instantiate<StairsController>(stairsDownPrefab);

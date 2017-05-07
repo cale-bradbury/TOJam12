@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour {
 
+
+    public enum Items
+    {
+        Fluorite,
+        Amethyst
+    }
+
     public List<GameObject> inventory;
     public int space = 16;
     public float animateInTime = .5f;
