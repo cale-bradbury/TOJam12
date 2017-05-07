@@ -8,7 +8,10 @@ public class Inventory : MonoBehaviour {
     public enum Items
     {
         Fluorite,
-        Amethyst
+        Amethyst,
+        Calcite,
+        Ametrine,
+        Tourmaline
     }
 
     public Dictionary<Items, int> inventory;

@@ -371,7 +371,7 @@ MonoBehaviour:
     - prefab: {fileID: 114830717507177658, guid: 8eee9602b319ff04ebed01aca86ba745,
         type: 2}
       count: 10
-    - prefab: {fileID: 114382412727556842, guid: 093c63092f4663a42bdd34cba31748c8,
+    - prefab: {fileID: 114675241079315464, guid: 9911b6d4079886f4787e4bd0e1d03db7,
         type: 2}
       count: 50
   - floorItems:
@@ -380,7 +380,7 @@ MonoBehaviour:
       count: 10
     - prefab: {fileID: 114382412727556842, guid: 093c63092f4663a42bdd34cba31748c8,
         type: 2}
-      count: 0
+      count: 30
 --- !u!4 &886954077
 Transform:
   m_ObjectHideFlags: 0

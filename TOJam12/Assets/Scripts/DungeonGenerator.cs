@@ -109,8 +109,9 @@ public class DungeonGenerator : MonoBehaviour
             CombineMesh(floor);
             PlaceStairsUp(floor);
             PlaceStairsDown(floor);
+            floor.FindEmpties();
             PlaceGems(floor);
-            floor.Enter();
+            //floor.Enter();
             floors[i] = floor;
             //StartCoroutine(BumpWalls(floors[i]));
             if (i != 0)
