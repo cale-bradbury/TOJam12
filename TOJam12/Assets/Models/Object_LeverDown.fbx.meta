@@ -1,49 +1,32 @@
 fileFormatVersion: 2
-guid: 4ba73156112dde34bad2027a091ed29b
-timeCreated: 1494181793
+guid: 9294587aa51724dbcb1b1a81a0a644d6
+timeCreated: 1494181482
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: Crystal_Amethyst
-    100002: //RootNode
-    100004: Crystal_Amethyst1
-    100006: Crystal_Amethyst3
-    100008: Crystal_Amethyst5
-    100010: Crystal_Amethyst7
-    100012: Crystal_Amethyst9
-    100014: group
-    100016: group1
-    100018: pasted__Crystal_Amethyst1
-    100020: pasted__Crystal_Amethyst3
-    100022: transform1
-    100024: transform2
-    100026: transform3
-    100028: transform4
-    100030: transform5
-    100032: transform6
-    100034: transform7
-    400000: //RootNode
-    400002: Crystal_Amethyst
-    400004: Crystal_Amethyst1
-    400006: Crystal_Amethyst3
-    400008: Crystal_Amethyst5
-    400010: Crystal_Amethyst7
-    400012: Crystal_Amethyst9
-    400014: group
-    400016: group1
-    400018: pasted__Crystal_Amethyst1
-    400020: pasted__Crystal_Amethyst3
-    400022: transform1
-    400024: transform2
-    400026: transform3
-    400028: transform4
-    400030: transform5
-    400032: transform6
-    400034: transform7
-    2300000: Crystal_Amethyst9
-    3300000: Crystal_Amethyst9
-    4300000: Crystal_Amethyst9
+    100000: Object_Lever
+    100002: Object_Lever2
+    100004: Object_Lever4
+    100006: Object_Lever6
+    100008: //RootNode
+    400000: Object_Lever
+    400002: Object_Lever2
+    400004: Object_Lever4
+    400006: Object_Lever6
+    400008: //RootNode
+    2300000: Object_Lever
+    2300002: Object_Lever2
+    2300004: Object_Lever4
+    2300006: Object_Lever6
+    3300000: Object_Lever
+    3300002: Object_Lever2
+    3300004: Object_Lever4
+    3300006: Object_Lever6
+    4300000: Object_Lever
+    4300002: Object_Lever2
+    4300004: Object_Lever4
+    4300006: Object_Lever6
   materials:
     importMaterials: 1
     materialName: 0
