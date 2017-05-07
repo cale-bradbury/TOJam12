@@ -5,6 +5,7 @@ using UnityEngine;
 public class DungeonGenerator : MonoBehaviour
 {
     FloorMaster[] floors;
+    public PlayerScript player;
     public int floorCount = 6;
     public float unitSize = 1;
     public GameObject floorPrefab;
@@ -12,8 +13,8 @@ public class DungeonGenerator : MonoBehaviour
     public GameObject cornerPrefab;
     public GameObject uPrefab;
     public GameObject oPrefab;
-    public GameObject stairsDownPrefab;
-    public GameObject stairsUpPrefab;
+    public StairsController stairsDownPrefab;
+    public StairsController stairsUpPrefab;
 
     public int worldSize = 20;
     public int birthLimit = 4;
@@ -25,10 +26,36 @@ public class DungeonGenerator : MonoBehaviour
     public Vector3 bumpDistance = Vector3.one;
     public LayerMask wallLayer;
     public SpawnInfo[] spawnInfo;
+    int floorIndex = 0;
 
     void OnEnable()
     {
         Generate();
+        EnterFloor(0);
+    }
+
+    public void EnterFloor(int index)
+    {
+        floors[floorIndex].gameObject.SetActive(false);
+        floorIndex = index;
+        floors[floorIndex].gameObject.SetActive(true);
+        player.transform.position = floors[floorIndex].stairsUp.transform.position;
+    }
+
+    public void NextFloor()
+    {
+        Debug.Log("NEXT FLOOR");
+        if (floorIndex == floorCount - 1)
+            return;
+        EnterFloor(floorIndex + 1);
+    }
+
+    public void PrevFloor()
+    {
+        Debug.Log("PREV FLOOR");
+        if (floorIndex == 0)
+            return;
+        EnterFloor(floorIndex - 1);
     }
 
     public void Update()
@@ -70,9 +97,9 @@ public class DungeonGenerator : MonoBehaviour
             if (i != 0)
             {
                 Vector3 offset = floors[i - 1].stairsUp.transform.position - floor.stairsDown.transform.position;
-                offset.y = -i*10;
                 floor.transform.position = offset;
             }
+            floors[i].gameObject.SetActive(false);
         }
     }
 
@@ -429,7 +456,9 @@ public class DungeonGenerator : MonoBehaviour
             x = Mathf.FloorToInt(Random.value * worldSize + 1);
             y = Mathf.FloorToInt(Random.value * worldSize + 1);
         }
-        floor.stairsUp = Instantiate<GameObject>(stairsUpPrefab);
+        floor.stairsUp = Instantiate<StairsController>(stairsUpPrefab);
+        floor.stairsUp.player = player;
+        floor.stairsUp.gen = this;
         floor.stairsUp.transform.parent = floor.transform;
         floor.stairsUp.transform.localPosition = new Vector3(x, 0, y);
     }
@@ -455,7 +484,9 @@ public class DungeonGenerator : MonoBehaviour
                 tries--;
             }
         }
-        floor.stairsDown = Instantiate<GameObject>(stairsDownPrefab);
+        floor.stairsDown = Instantiate<StairsController>(stairsDownPrefab);
+        floor.stairsDown.player = player;
+        floor.stairsDown.gen = this;
         floor.stairsDown.transform.parent = floor.transform;
         pos.x = Mathf.FloorToInt(pos.x);
         pos.z = Mathf.FloorToInt(pos.z);
