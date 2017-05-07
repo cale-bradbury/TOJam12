@@ -9,6 +9,7 @@ public class Spawnable : MonoBehaviour {
     public LayerMask collisionLayer;
     public bool faceRay = true;
     public Vector3 adtionalRotation;
+    public Vector3 adtionalPosition;
 
     internal Vector3[] allDirections = new Vector3[] { Vector3.forward, Vector3.back, Vector3.right, Vector3.left, Vector3.up, Vector3.down };
     internal Vector3[] wallDirections = new Vector3[] { Vector3.forward, Vector3.back, Vector3.right, Vector3.left };
@@ -30,6 +31,7 @@ public class Spawnable : MonoBehaviour {
             transform.position = pos;
         }
         transform.localEulerAngles += adtionalRotation;
+        transform.localPosition += adtionalPosition;
     }
 
 }

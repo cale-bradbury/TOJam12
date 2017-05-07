@@ -368,7 +368,7 @@ MonoBehaviour:
     m_Bits: 512
   spawnInfo:
   - floorItems:
-    - prefab: {fileID: 114830717507177658, guid: 8eee9602b319ff04ebed01aca86ba745,
+    - prefab: {fileID: 114830717507177658, guid: ec6f6f740e54db8468339127cf34ccd2,
         type: 2}
       count: 10
     - prefab: {fileID: 114675241079315464, guid: 9911b6d4079886f4787e4bd0e1d03db7,
