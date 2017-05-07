@@ -17,6 +17,7 @@ public class DialogEditor : Editor
     Color endColor = new Color(.3f, .3f, .3f);
     Color jumpColor = new Color(.5f, 1f, .5f);
     Color jumpPointColor = new Color(.0f, 1f, .0f);
+    Color varColor = new Color(.5f, .5f, 1f);
 
     private void OnEnable()
     {
@@ -100,22 +101,27 @@ public class DialogEditor : Editor
                 EditorGUI.LabelField(new Rect(rect.x, rect.y, 60, EditorGUIUtility.singleLineHeight), "jumpTag");
                 e.string2 = EditorGUI.TextField(new Rect(rect.x + 60, rect.y, rect.width - 120, EditorGUIUtility.singleLineHeight), e.string2);
                 rect.y += EditorGUIUtility.singleLineHeight;
-                EditorGUI.LabelField(new Rect(rect.x, rect.y, 60, EditorGUIUtility.singleLineHeight), "greater than");
+                EditorGUI.LabelField(new Rect(rect.x, rect.y, 60, EditorGUIUtility.singleLineHeight), "condition");
+                e.condition = (DialogElement.Condition)EditorGUI.EnumPopup(new Rect(rect.x + 60, rect.y, rect.width - 120, EditorGUIUtility.singleLineHeight), e.condition);
+                rect.y += EditorGUIUtility.singleLineHeight;
+                EditorGUI.LabelField(new Rect(rect.x, rect.y, 60, EditorGUIUtility.singleLineHeight), "value");
                 e.float1 = EditorGUI.FloatField(new Rect(rect.x + 60, rect.y, rect.width - 120, EditorGUIUtility.singleLineHeight), e.float1);
             }
             else if (t == DialogElement.Type.JumpPoint)
             {
-                ChangeColor(rect, jumpColor);
+                ChangeColor(rect, jumpPointColor);
                 EditorGUI.LabelField(new Rect(rect.x, rect.y, 60, EditorGUIUtility.singleLineHeight), "jump tag");
                 rect.x += 60;
                 e.string2 = EditorGUI.TextField(new Rect(rect.x + 60, rect.y, rect.width - 120, EditorGUIUtility.singleLineHeight), e.string2);
             }
             else if (t == DialogElement.Type.IncreaseVar)
             {
-                ChangeColor(rect, jumpColor);
+                ChangeColor(rect, varColor);
                 EditorGUI.LabelField(new Rect(rect.x, rect.y, 120, EditorGUIUtility.singleLineHeight), "increment var");
                 rect.x += 60;
                 e.string1 = EditorGUI.TextField(new Rect(rect.x + 60, rect.y, rect.width - 120, EditorGUIUtility.singleLineHeight), e.string1);
+                rect.y += EditorGUIUtility.singleLineHeight;
+                e.float1 = EditorGUI.FloatField(new Rect(rect.x-60, rect.y, rect.width, EditorGUIUtility.singleLineHeight),"amount", e.float1);
             }
         };
 
@@ -125,7 +131,7 @@ public class DialogEditor : Editor
             DialogElement.Type t = e.type;
             float f = 2;
             if (t == DialogElement.Type.JumpIfVar)
-                f = 3;
+                f = 4;
             return EditorGUIUtility.singleLineHeight * f+8;
         };
     }

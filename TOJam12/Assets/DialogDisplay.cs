@@ -103,15 +103,25 @@ public class DialogDisplay : MonoBehaviour {
         }
         else if (d.type == DialogElement.Type.JumpIfVar)
         {
-            if (dialogVars.ContainsKey(d.string1) && dialogVars[d.string1] < d.float1)
-                Jump(d.string2);
+            if (dialogVars.ContainsKey(d.string1))
+            {
+                if (d.condition == DialogElement.Condition.Equal && dialogVars[d.string1] == d.float1)
+                    Jump(d.string2);
+                else if (d.condition == DialogElement.Condition.Greater && dialogVars[d.string1] > d.float1)
+                    Jump(d.string2);
+                else if (d.condition == DialogElement.Condition.Less && dialogVars[d.string1] < d.float1)
+                    Jump(d.string2);
+                else if (d.condition == DialogElement.Condition.NotEqual && dialogVars[d.string1] != d.float1)
+                    Jump(d.string2);
+            }
+            
             fireNext = true;
         }
         else if (d.type == DialogElement.Type.IncreaseVar)
         {
             if (!dialogVars.ContainsKey(d.string1))
                 dialogVars.Add(d.string1, 0);
-            dialogVars[d.string1]++;
+            dialogVars[d.string1]+= Mathf.RoundToInt( d.float1);
             fireNext = true;
         }
         index++;
@@ -170,12 +180,19 @@ public class DialogElement
         JumpIfVar,
         IncreaseVar
     }
+    public enum Condition
+    {
+        Greater,
+        Less,
+        Equal,
+        NotEqual
+    }
     public Type type;
 
     public string string1;
     public string string2;
     public float float1;
     public AudioSource audio;
-
+    public Condition condition;
     public Transform transform1;
 }
