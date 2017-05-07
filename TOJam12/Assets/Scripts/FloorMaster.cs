@@ -59,7 +59,7 @@ public class FloorMaster : MonoBehaviour {
         return new Vector3(v.x, 0, v.y);
     }
 
-    public Vector3 FindEmptyNoWall(bool random = false, int set = 0)
+    public Vector3 FindEmptyNoWall(bool random = false, int set = 2)
     {
         int x = 0, y = 0;
         while (map[x, y] == 1 || map[x + 1, y] == 1 || map[x - 1, y] == 1 || map[x, y + 1] == 1 || map[x, y - 1] == 1 || map[x + 1, y+1] == 1 || map[x + 1, y-1] == 1 || map[x-1, y + 1] == 1 || map[x-1, y - 1] == 1)
