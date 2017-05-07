@@ -7,9 +7,9 @@ public class DialogDisplay : MonoBehaviour {
 
 
     public static DialogDisplay instance;
+    public Inventory inventory;
     public Animator animator;
     public Dictionary<string, int> dialogVars;
-    public Dictionary<Inventory.Items, int> inventory;
     public Camera playerCamera;
     public Text text;
     public float lineHeight = 25;
@@ -26,9 +26,9 @@ public class DialogDisplay : MonoBehaviour {
 
     public static void AddInventory(Inventory.Items item)
     {
-        if (!instance.inventory.ContainsKey(item))
-            instance.inventory[item] = 0;
-        instance.inventory[item]++;
+        if (!instance.inventory.inventory.ContainsKey(item))
+            instance.inventory.inventory[item] = 0;
+        instance.inventory.inventory[item]++;
     }
 
     public void Awake()
@@ -36,7 +36,6 @@ public class DialogDisplay : MonoBehaviour {
         instance = this;
         text.text = "";
         dialogVars = new Dictionary<string, int>();
-        inventory = new Dictionary<Inventory.Items, int>();
         MouseLook[] ml = FindObjectsOfType<MouseLook>();
         foreach (MouseLook m in ml)
             scriptsToLock.Add(m);
@@ -49,6 +48,7 @@ public class DialogDisplay : MonoBehaviour {
     {
         if (endedThisFrame>0)//replace with out animation
             return;
+        animator.SetBool("Show", true);
         log.dialogMode = true;
         inDialog = true;
         currentDialog = log;
@@ -60,6 +60,7 @@ public class DialogDisplay : MonoBehaviour {
 
     public void EndDialog()
     {
+        animator.SetBool("Show", false);
         endedThisFrame = 30;
         inDialog = false;
         currentDialog.dialogMode = false;
@@ -133,17 +134,17 @@ public class DialogDisplay : MonoBehaviour {
 
         else if (d.type == DialogElement.Type.JumpIfInventory)
         {
-            if (!inventory.ContainsKey(d.item))
+            if (!inventory.inventory.ContainsKey(d.item))
             {
-                inventory[d.item] = 0;
+                inventory.inventory[d.item] = 0;
             }
-            if (d.condition == DialogElement.Condition.Equal && inventory[d.item] == d.float1)
+            if (d.condition == DialogElement.Condition.Equal && inventory.inventory[d.item] == d.float1)
                 Jump(d.string1);
-            else if (d.condition == DialogElement.Condition.Greater && inventory[d.item] > d.float1)
+            else if (d.condition == DialogElement.Condition.Greater && inventory.inventory[d.item] > d.float1)
                 Jump(d.string1);
-            else if (d.condition == DialogElement.Condition.Less && inventory[d.item] < d.float1)
+            else if (d.condition == DialogElement.Condition.Less && inventory.inventory[d.item] < d.float1)
                 Jump(d.string1);
-            else if (d.condition == DialogElement.Condition.NotEqual && inventory[d.item] != d.float1)
+            else if (d.condition == DialogElement.Condition.NotEqual && inventory.inventory[d.item] != d.float1)
                 Jump(d.string1);
 
             fireNext = true;
@@ -157,9 +158,9 @@ public class DialogDisplay : MonoBehaviour {
         }
         else if (d.type == DialogElement.Type.ChangeInventory)
         {
-            if (!inventory.ContainsKey(d.item))
-                inventory.Add(d.item, 0);
-            inventory[d.item] += Mathf.RoundToInt(d.float1);
+            if (!inventory.inventory.ContainsKey(d.item))
+                inventory.inventory.Add(d.item, 0);
+            inventory.inventory[d.item] += Mathf.RoundToInt(d.float1);
             fireNext = true;
         }
         index++;

@@ -21,9 +21,7 @@ public class PlayerScript : MonoBehaviour {
         if (inventory.hasSpace)
         {
             gem.enabled = false;
-            inventory.Add(gem.gameObject);
-            Debug.Log(gem.gemType.ToString());
-            DialogDisplay.AddInventory(gem.gemType);
+            inventory.Add(gem);
         }
     }
 }

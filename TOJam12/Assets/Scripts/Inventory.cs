@@ -11,7 +11,7 @@ public class Inventory : MonoBehaviour {
         Amethyst
     }
 
-    public List<GameObject> inventory;
+    public Dictionary<Items, int> inventory;
     public int space = 16;
     public float animateInTime = .5f;
 
@@ -23,10 +23,22 @@ public class Inventory : MonoBehaviour {
         }
     }
 
-
-    public void Add(GameObject g)
+    void Awake()
     {
-        inventory.Add(g);
+        inventory = new Dictionary<Items, int>();
+    }
+
+
+    public void Add(Item item)
+    {
+        if (!inventory.ContainsKey(item.itemType))
+            inventory[item.itemType] = 0;
+        inventory[item.itemType]++;
+        AnimateIn(item.gameObject);
+    }
+
+    public void AnimateIn(GameObject g)
+    {
         g.transform.parent = transform;
         g.GetComponent<Collider>().enabled = false;
         StartCoroutine(AnimateToInventory(g, animateInTime));
@@ -45,5 +57,6 @@ public class Inventory : MonoBehaviour {
             g.transform.localPosition = Vector3.Lerp(Vector3.zero, startPos, Mathf.Pow(t, 2));
             yield return new WaitForEndOfFrame();
         }
+        Destroy(g);
     }
 }

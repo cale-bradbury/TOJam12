@@ -645,7 +645,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8828575a54c5a4d4cae47b7bb3757880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  inventory: {fileID: 1594165463}
+  animator: {fileID: 1287011820}
   playerCamera: {fileID: 2047334749}
   text: {fileID: 1234061818}
   lineHeight: 25
@@ -666,6 +667,12 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &1594165463 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114461239796328792, guid: 25e3ab2d6992a48f3ab7455baed062e0,
+    type: 2}
+  m_PrefabInternal: {fileID: 240760034}
+  m_Script: {fileID: 11500000, guid: 2115a54c5b6c73b4a93d056d332c708a, type: 3}
 --- !u!1 &1687183075
 GameObject:
   m_ObjectHideFlags: 0

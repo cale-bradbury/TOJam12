@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GemScript : MonoBehaviour {
+public class GemScript : Item {
 
-    public Inventory.Items gemType;
     public string description;
     
     void Start()
