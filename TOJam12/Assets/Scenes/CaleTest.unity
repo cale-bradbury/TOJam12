@@ -245,6 +245,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 25e3ab2d6992a48f3ab7455baed062e0, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &240760043 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114959460651077874, guid: 25e3ab2d6992a48f3ab7455baed062e0,
+    type: 2}
+  m_PrefabInternal: {fileID: 240760034}
+  m_Script: {fileID: 11500000, guid: bd0841f9745c4f74fada881beacbcbc0, type: 3}
 --- !u!1001 &301294240
 Prefab:
   m_ObjectHideFlags: 0
@@ -287,6 +293,21 @@ Prefab:
     - target: {fileID: 1545903543417360, guid: 546b2864987c34adfaff41b1a514cca9, type: 2}
       propertyPath: m_Name
       value: FloorGeneration (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114011168105983212, guid: 546b2864987c34adfaff41b1a514cca9,
+        type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 240760043}
+    - target: {fileID: 114629671987165054, guid: 546b2864987c34adfaff41b1a514cca9,
+        type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 240760043}
+    - target: {fileID: 114011168105983212, guid: 546b2864987c34adfaff41b1a514cca9,
+        type: 2}
+      propertyPath: floorCount
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 546b2864987c34adfaff41b1a514cca9, type: 2}
@@ -386,7 +407,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 50}
-  m_SizeDelta: {x: 0, y: 100}
+  m_SizeDelta: {x: -40, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1234061818
 MonoBehaviour:
@@ -400,7 +421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -418,9 +439,11 @@ MonoBehaviour:
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: dsf sdf sdf sdf s dfs df sdf s df sd fs dfd sd f sdf s df sd fs df sdf s
+    fd fg sdfg sd fgsd fg sdf gs dfg sdf gsd fg sdf gsd fg sdf gsd f gsd fg sdf gsd
+    fg
 --- !u!222 &1234061819
 CanvasRenderer:
   m_ObjectHideFlags: 0

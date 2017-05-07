@@ -39,17 +39,24 @@ public class DungeonGenerator : MonoBehaviour
     bool fading = false;
     public void EnterFloor(int index)
     {
-        Debug.Log(fading);
         if (fading)
             return;
         fading = true;
         CameraFade.StartAlphaFade(Color.black, false, .5f, 0, ()=>
         {
             floors[floorIndex].gameObject.SetActive(false);
+            bool down = floorIndex < index;
             floorIndex = index;
             floors[floorIndex].gameObject.SetActive(true);
-            player.transform.position = floors[floorIndex].stairsUp.transform.position;
-            player.transform.rotation = floors[floorIndex].stairsUp.transform.rotation;
+            if (down)
+            {
+                player.transform.position = floors[floorIndex].stairsUp.transform.position;
+                player.transform.rotation = floors[floorIndex].stairsUp.transform.rotation;
+            }else
+            {
+                player.transform.position = floors[floorIndex].stairsDown.transform.position;
+                player.transform.rotation = floors[floorIndex].stairsDown.transform.rotation;
+            }
             fading = false;
             Invoke("FadeIn", 0f);
         });
@@ -471,6 +478,7 @@ public class DungeonGenerator : MonoBehaviour
     void PlaceStairsUp(FloorMaster floor)
     {
         Vector3 pos = floor.FindEmptyNoWall(false);
+       // pos += Vector3.one ;
         floor.stairsUp = Instantiate<StairsController>(stairsUpPrefab);
         floor.stairsUp.player = player;
         floor.stairsUp.gen = this;
@@ -483,6 +491,7 @@ public class DungeonGenerator : MonoBehaviour
     void PlaceStairsDown(FloorMaster floor, int tries = 20)
     {
         Vector3 pos = floor.stairsUp.transform.localPosition;
+        //pos += Vector3.one ;
         float dist = 0;
         while (dist == 0)
         {
