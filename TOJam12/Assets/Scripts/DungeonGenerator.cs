@@ -24,9 +24,7 @@ public class DungeonGenerator : MonoBehaviour
     public float weldBucket = 1;
     public Vector3 bumpDistance = Vector3.one;
     public LayerMask wallLayer;
-    public GemSpawnInfo[] gems;
-    Vector3[] directions = new Vector3[] {Vector3.forward, Vector3.back, Vector3.right, Vector3.left, Vector3.up, Vector3.down };
-
+    public SpawnInfo[] gems;
 
     void OnEnable()
     {
@@ -466,36 +464,22 @@ public class DungeonGenerator : MonoBehaviour
 
     void PlaceGems(FloorMaster floor)
     {
-        GemSpawnInfo info = gems[floor.floorNumber];
+        SpawnInfo info = gems[floor.floorNumber];
         for (int i = 0; i < info.prefabs.Length; i++)
         {
             for (int j = 0; j < info.counts[i]; j++)
             {
-                Vector3 pos = FindEmpty(floor.map);
-                GemScript g = Instantiate<GemScript>(info.prefabs[i]);
-                g.transform.parent = floor.gemHolder;
-                RaycastHit hit;
-                Physics.Raycast(pos, directions[Mathf.FloorToInt(Random.value * directions.Length)], out hit, 1000, wallLayer);
-                g.transform.localPosition = hit.point;
+                Spawnable g = Instantiate<Spawnable>(info.prefabs[i]);
+                g.Spawn(floor);
             }
         }
     }
 
-    Vector3 FindEmpty(int[,] map)
-    {
-        int x = 0, y = 0;
-        while (map[x, y] == 1)
-        {
-            x = Mathf.FloorToInt(Random.value * map.GetLength(0));
-            y = Mathf.FloorToInt(Random.value * map.GetLength(1));
-        }
-        return new Vector3(x - .5f + Random.value, Random.value, y-.5f+Random.value);
-    }
 }
 
 [System.Serializable]
-public struct GemSpawnInfo
+public struct SpawnInfo
 {
-    public GemScript[] prefabs;
+    public Spawnable[] prefabs;
     public int[] counts;
 }

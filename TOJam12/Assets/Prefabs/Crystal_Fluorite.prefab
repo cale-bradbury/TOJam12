@@ -37,7 +37,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4935267858148610}
   - component: {fileID: 114693665765578334}
-  - component: {fileID: 64675527432130822}
+  - component: {fileID: 136338713838033162}
+  - component: {fileID: 114382412727556842}
   m_Layer: 8
   m_Name: Crystal_Fluorite
   m_TagString: Untagged
@@ -111,20 +112,22 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1568070453466556}
   m_Mesh: {fileID: 4300000, guid: 57a4fa5ad7c8e22458766dfe80fbd18c, type: 3}
---- !u!64 &64675527432130822
-MeshCollider:
+--- !u!114 &114382412727556842
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1873604109394282}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 1
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: 57a4fa5ad7c8e22458766dfe80fbd18c, type: 3}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08b1bbef39792554f99fab739a41db40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionLayer:
+    serializedVersion: 2
+    m_Bits: 768
+  faceRay: 1
+  adtionalRotation: {x: 180, y: 0, z: 0}
 --- !u!114 &114693665765578334
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -138,3 +141,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gemType: 0
   description: bursh ur teeth
+--- !u!136 &136338713838033162
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1873604109394282}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.07
+  m_Height: 0.3
+  m_Direction: 0
+  m_Center: {x: 0, y: 0, z: 0}
