@@ -1,0 +1,136 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1545903543417360}
+  m_IsPrefabParent: 1
+--- !u!1 &1545903543417360
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4205761914206390}
+  - component: {fileID: 114629671987165054}
+  - component: {fileID: 114011168105983212}
+  m_Layer: 0
+  m_Name: FloorGeneration
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4205761914206390
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1545903543417360}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114011168105983212
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1545903543417360}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6d09aca158e46b47bf8da8ee193f20f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  floorCount: 2
+  unitSize: 1
+  floorPrefab: {fileID: 1980150838043046, guid: 858168796e308fa469180f6fc78d91bd,
+    type: 2}
+  wallPrefab: {fileID: 1387907935531996, guid: baf5ae0043c4419468f361224523a8c3, type: 2}
+  cornerPrefab: {fileID: 1116880430161766, guid: ddcc7470fa60566488f96abebbfd625c,
+    type: 2}
+  uPrefab: {fileID: 1038432882941944, guid: f8b7dd5966f278d48865db4cad2fabb3, type: 2}
+  oPrefab: {fileID: 1360189502725206, guid: 50cb709068e3a5a4dba85715c461afe5, type: 2}
+  stairsDownPrefab: {fileID: 114232660605240504, guid: 3d146ebbb0e179c4394ce36f69a66669,
+    type: 2}
+  stairsUpPrefab: {fileID: 114742870903419086, guid: 84d5ed434bda6054eb304e1f7c092b73,
+    type: 2}
+  worldSize: 22
+  birthLimit: 4
+  deathLimit: 3
+  simulationSteps: 20
+  mapWallChance: 0.62
+  weldDistance: 0.005
+  weldBucket: 1
+  bumpDistance: {x: 0.1, y: 0.02, z: 0.1}
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  spawnInfo:
+  - floorItems:
+    - prefab: {fileID: 114830717507177658, guid: c884c07c9ddfbff48a3cf3a724fe2406,
+        type: 2}
+      count: 1
+    - prefab: {fileID: 114382412727556842, guid: 093c63092f4663a42bdd34cba31748c8,
+        type: 2}
+      count: 5
+    - prefab: {fileID: 114700455509369090, guid: dddef34249985e34c9a98d91e9d8dbe1,
+        type: 2}
+      count: 3
+  - floorItems:
+    - prefab: {fileID: 114830717507177658, guid: aac8af65c306d1b408656d461d92c597,
+        type: 2}
+      count: 1
+    - prefab: {fileID: 114700455509369090, guid: dddef34249985e34c9a98d91e9d8dbe1,
+        type: 2}
+      count: 2
+    - prefab: {fileID: 114130527224978640, guid: d5702f72bc3322a4fb5b3a04f87f14f8,
+        type: 2}
+      count: 5
+  - floorItems:
+    - prefab: {fileID: 114830717507177658, guid: e5c6412e1a96bd5439b4aef716d19d36,
+        type: 2}
+      count: 1
+    - prefab: {fileID: 114700455509369090, guid: dddef34249985e34c9a98d91e9d8dbe1,
+        type: 2}
+      count: 4
+    - prefab: {fileID: 114675241079315464, guid: 9911b6d4079886f4787e4bd0e1d03db7,
+        type: 2}
+      count: 2
+    - prefab: {fileID: 114382412727556842, guid: 093c63092f4663a42bdd34cba31748c8,
+        type: 2}
+      count: 4
+  - floorItems:
+    - prefab: {fileID: 114830717507177658, guid: ec6f6f740e54db8468339127cf34ccd2,
+        type: 2}
+      count: 1
+    - prefab: {fileID: 114382412727556842, guid: 093c63092f4663a42bdd34cba31748c8,
+        type: 2}
+      count: 10
+    - prefab: {fileID: 114675241079315464, guid: 9911b6d4079886f4787e4bd0e1d03db7,
+        type: 2}
+      count: 4
+--- !u!114 &114629671987165054
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1545903543417360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4b7e7992c59f8340ac278aec19c80cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  generator: {fileID: 114011168105983212}
