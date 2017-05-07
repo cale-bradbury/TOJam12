@@ -2522,6 +2522,9 @@ GameObject:
   - component: {fileID: 4272405155594280}
   - component: {fileID: 65358074097239666}
   - component: {fileID: 114742870903419086}
+  - component: {fileID: 65051938892332450}
+  - component: {fileID: 65547471226785078}
+  - component: {fileID: 65675276974077608}
   m_Layer: 0
   m_Name: StairsUp
   m_TagString: Untagged
@@ -6549,6 +6552,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1618167768748186}
   m_Mesh: {fileID: 4300004, guid: 88e4ba39cd4b04ad3a3178a9044e5260, type: 3}
+--- !u!65 &65051938892332450
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1748686635622258}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.04, y: 0.4, z: 0.3}
+  m_Center: {x: 0.2, y: 0.2, z: 0}
 --- !u!65 &65358074097239666
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -6561,6 +6576,30 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.3, y: 0.4, z: 0.3}
   m_Center: {x: 0, y: 0.2, z: 0}
+--- !u!65 &65547471226785078
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1748686635622258}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.4, y: 0.4, z: 0.04}
+  m_Center: {x: 0.02, y: 0.2, z: -0.16}
+--- !u!65 &65675276974077608
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1748686635622258}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.4, y: 0.4, z: 0.04}
+  m_Center: {x: 0.02, y: 0.2, z: 0.16}
 --- !u!114 &114742870903419086
 MonoBehaviour:
   m_ObjectHideFlags: 1

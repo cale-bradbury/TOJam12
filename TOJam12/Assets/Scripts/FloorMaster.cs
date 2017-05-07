@@ -24,8 +24,21 @@ public class FloorMaster : MonoBehaviour {
             x = Mathf.FloorToInt(Random.value * map.GetLength(0));
             y = Mathf.FloorToInt(Random.value * map.GetLength(1));
         }
-        if(random)
+        if (random)
             return new Vector3(x - .5f + Random.value, Random.value, y - .5f + Random.value);
-        return new Vector3(x, 0, y );
+        return new Vector3(x, 0, y);
+    }
+
+    public Vector3 FindEmptyNoWall(bool random = false)
+    {
+        int x = 0, y = 0;
+        while (map[x, y] == 1 || map[x + 1, y] == 1 || map[x - 1, y] == 1 || map[x , y+1] == 1 || map[x, y-1] == 1)
+        {
+            x = Mathf.FloorToInt(Random.value * (map.GetLength(0)-2))+1;
+            y = Mathf.FloorToInt(Random.value * (map.GetLength(1)-2))+1;
+        }
+        if (random)
+            return new Vector3(x - .5f + Random.value, Random.value, y - .5f + Random.value);
+        return new Vector3(x, 0, y);
     }
 }

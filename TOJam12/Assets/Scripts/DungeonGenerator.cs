@@ -450,38 +450,27 @@ public class DungeonGenerator : MonoBehaviour
 
     void PlaceStairsUp(FloorMaster floor)
     {
-        int x = 0, y = 0;
-        while (floor.map[x, y] != 0)
-        {
-            x = Mathf.FloorToInt(Random.value * worldSize + 1);
-            y = Mathf.FloorToInt(Random.value * worldSize + 1);
-        }
+        Vector3 pos = floor.FindEmptyNoWall(false);
         floor.stairsUp = Instantiate<StairsController>(stairsUpPrefab);
         floor.stairsUp.player = player;
         floor.stairsUp.gen = this;
         floor.stairsUp.transform.parent = floor.transform;
-        floor.stairsUp.transform.localPosition = new Vector3(x, 0, y);
+        floor.stairsUp.transform.localPosition = pos;
+        floor.stairsUp.transform.localEulerAngles = Vector3.up * Mathf.Floor(Random.value * 4) * 90;
     }
 
-    void PlaceStairsDown(FloorMaster floor, int tries = 25)
+    void PlaceStairsDown(FloorMaster floor, int tries = 20)
     {
         Vector3 pos = floor.stairsUp.transform.localPosition;
         float dist = 0;
         for (int i = 0; i < tries; i++)
         {
-            Vector3 v = new Vector3(Random.value * worldSize + 1, 0, Random.value * worldSize + 1);
-            if (floor.map[Mathf.FloorToInt(v.x), Mathf.FloorToInt(v.z)] == 0)
+            Vector3 v = floor.FindEmptyNoWall(false);
+            float d = Vector3.Distance(v, pos);
+            if (d > dist)
             {
-                float d = Vector3.Distance(v, pos);
-                if (d > dist)
-                {
-                    pos = v;
-                    dist = d;
-                }
-            }
-            else
-            {
-                tries--;
+                pos = v;
+                dist = d;
             }
         }
         floor.stairsDown = Instantiate<StairsController>(stairsDownPrefab);
@@ -491,6 +480,7 @@ public class DungeonGenerator : MonoBehaviour
         pos.x = Mathf.FloorToInt(pos.x);
         pos.z = Mathf.FloorToInt(pos.z);
         floor.stairsDown.transform.localPosition = pos;
+        floor.stairsDown.transform.localEulerAngles = Vector3.up * Mathf.Floor(Random.value*4)*90;
     }
 
     void PlaceGems(FloorMaster floor)
