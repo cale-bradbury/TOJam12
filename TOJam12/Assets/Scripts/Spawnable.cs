@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Spawnable : MonoBehaviour {
 
+    public bool center = false;
+    public bool castRay = false;
     public LayerMask collisionLayer;
     public bool faceRay = true;
     public Vector3 adtionalRotation;
@@ -13,14 +15,20 @@ public class Spawnable : MonoBehaviour {
 
     public virtual void Spawn(FloorMaster floor)
     {
-        Vector3 pos = floor.FindEmpty();
+        Vector3 pos = floor.FindEmpty(!center);
         transform.parent = floor.transform;
-        RaycastHit hit;
-        Vector3 direction = allDirections[Mathf.FloorToInt(Random.value * allDirections.Length)];
-        Physics.Raycast(pos, direction, out hit, 1000, collisionLayer);
-        transform.position = hit.point;
-        if (faceRay)
-            transform.LookAt(transform.localToWorldMatrix.MultiplyPoint(direction));
+        if (castRay)
+        {
+            RaycastHit hit;
+            Vector3 direction = allDirections[Mathf.FloorToInt(Random.value * allDirections.Length)];
+            Physics.Raycast(pos, direction, out hit, 1000, collisionLayer);
+            transform.position = hit.point;
+            if (faceRay)
+                transform.LookAt(transform.localToWorldMatrix.MultiplyPoint(direction));
+        }else
+        {
+            transform.position = pos;
+        }
         transform.localEulerAngles += adtionalRotation;
     }
 

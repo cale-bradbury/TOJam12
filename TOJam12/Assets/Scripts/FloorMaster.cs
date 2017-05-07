@@ -16,7 +16,7 @@ public class FloorMaster : MonoBehaviour {
         DungeonMaster.instance.player.transform.position = stairsUp.transform.position + Vector3.up * .2f;
     }
 
-    public Vector3 FindEmpty()
+    public Vector3 FindEmpty(bool random = false)
     {
         int x = 0, y = 0;
         while (map[x, y] == 1)
@@ -24,6 +24,8 @@ public class FloorMaster : MonoBehaviour {
             x = Mathf.FloorToInt(Random.value * map.GetLength(0));
             y = Mathf.FloorToInt(Random.value * map.GetLength(1));
         }
-        return new Vector3(x - .5f + Random.value, Random.value, y - .5f + Random.value);
+        if(random)
+            return new Vector3(x - .5f + Random.value, Random.value, y - .5f + Random.value);
+        return new Vector3(x, 0, y );
     }
 }
