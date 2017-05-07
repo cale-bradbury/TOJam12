@@ -32,7 +32,7 @@ public class FloorMaster : MonoBehaviour {
     public Vector3 FindEmptyNoWall(bool random = false)
     {
         int x = 0, y = 0;
-        while (map[x, y] == 1 || map[x + 1, y] == 1 || map[x - 1, y] == 1 || map[x , y+1] == 1 || map[x, y-1] == 1)
+        while (map[x, y] == 1 || map[x + 1, y] == 1 || map[x - 1, y] == 1 || map[x, y + 1] == 1 || map[x, y - 1] == 1 || map[x + 1, y+1] == 1 || map[x + 1, y-1] == 1 || map[x-1, y + 1] == 1 || map[x-1, y - 1] == 1)
         {
             x = Mathf.FloorToInt(Random.value * (map.GetLength(0)-2))+1;
             y = Mathf.FloorToInt(Random.value * (map.GetLength(1)-2))+1;
