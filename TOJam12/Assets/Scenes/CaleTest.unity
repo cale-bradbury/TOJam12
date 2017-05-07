@@ -360,7 +360,7 @@ MonoBehaviour:
   deathLimit: 3
   simulationSteps: 20
   mapWallChance: 0.62
-  weldDistance: 0.01
+  weldDistance: 0.005
   weldBucket: 1
   bumpDistance: {x: 0.1, y: 0.02, z: 0.1}
   wallLayer:
