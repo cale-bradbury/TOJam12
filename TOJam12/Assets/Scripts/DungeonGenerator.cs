@@ -5,6 +5,7 @@ using UnityEngine;
 public class DungeonGenerator : MonoBehaviour
 {
     FloorMaster[] floors;
+    public PlayerScript player;
     public int floorCount = 6;
     public float unitSize = 1;
     public GameObject floorPrefab;
@@ -12,8 +13,8 @@ public class DungeonGenerator : MonoBehaviour
     public GameObject cornerPrefab;
     public GameObject uPrefab;
     public GameObject oPrefab;
-    public GameObject stairsDownPrefab;
-    public GameObject stairsUpPrefab;
+    public StairsController stairsDownPrefab;
+    public StairsController stairsUpPrefab;
 
     public int worldSize = 20;
     public int birthLimit = 4;
@@ -24,13 +25,37 @@ public class DungeonGenerator : MonoBehaviour
     public float weldBucket = 1;
     public Vector3 bumpDistance = Vector3.one;
     public LayerMask wallLayer;
-    public GemSpawnInfo[] gems;
-    Vector3[] directions = new Vector3[] {Vector3.forward, Vector3.back, Vector3.right, Vector3.left, Vector3.up, Vector3.down };
-
+    public SpawnInfo[] spawnInfo;
+    int floorIndex = 0;
 
     void OnEnable()
     {
         Generate();
+        EnterFloor(0);
+    }
+
+    public void EnterFloor(int index)
+    {
+        floors[floorIndex].gameObject.SetActive(false);
+        floorIndex = index;
+        floors[floorIndex].gameObject.SetActive(true);
+        player.transform.position = floors[floorIndex].stairsUp.transform.position;
+    }
+
+    public void NextFloor()
+    {
+        Debug.Log("NEXT FLOOR");
+        if (floorIndex == floorCount - 1)
+            return;
+        EnterFloor(floorIndex + 1);
+    }
+
+    public void PrevFloor()
+    {
+        Debug.Log("PREV FLOOR");
+        if (floorIndex == 0)
+            return;
+        EnterFloor(floorIndex - 1);
     }
 
     public void Update()
@@ -72,9 +97,9 @@ public class DungeonGenerator : MonoBehaviour
             if (i != 0)
             {
                 Vector3 offset = floors[i - 1].stairsUp.transform.position - floor.stairsDown.transform.position;
-                offset.y = -i*10;
                 floor.transform.position = offset;
             }
+            floors[i].gameObject.SetActive(false);
         }
     }
 
@@ -425,77 +450,64 @@ public class DungeonGenerator : MonoBehaviour
 
     void PlaceStairsUp(FloorMaster floor)
     {
-        int x = 0, y = 0;
-        while (floor.map[x, y] != 0)
-        {
-            x = Mathf.FloorToInt(Random.value * worldSize + 1);
-            y = Mathf.FloorToInt(Random.value * worldSize + 1);
-        }
-        floor.stairsUp = Instantiate<GameObject>(stairsUpPrefab);
+        Vector3 pos = floor.FindEmptyNoWall(false);
+        floor.stairsUp = Instantiate<StairsController>(stairsUpPrefab);
+        floor.stairsUp.player = player;
+        floor.stairsUp.gen = this;
         floor.stairsUp.transform.parent = floor.transform;
-        floor.stairsUp.transform.localPosition = new Vector3(x, 0, y);
+        floor.stairsUp.transform.localPosition = pos;
+        floor.stairsUp.transform.localEulerAngles = Vector3.up * Mathf.Floor(Random.value * 4) * 90;
     }
 
-    void PlaceStairsDown(FloorMaster floor, int tries = 25)
+    void PlaceStairsDown(FloorMaster floor, int tries = 20)
     {
         Vector3 pos = floor.stairsUp.transform.localPosition;
         float dist = 0;
         for (int i = 0; i < tries; i++)
         {
-            Vector3 v = new Vector3(Random.value * worldSize + 1, 0, Random.value * worldSize + 1);
-            if (floor.map[Mathf.FloorToInt(v.x), Mathf.FloorToInt(v.z)] == 0)
+            Vector3 v = floor.FindEmptyNoWall(false);
+            float d = Vector3.Distance(v, pos);
+            if (d > dist)
             {
-                float d = Vector3.Distance(v, pos);
-                if (d > dist)
-                {
-                    pos = v;
-                    dist = d;
-                }
-            }
-            else
-            {
-                tries--;
+                pos = v;
+                dist = d;
             }
         }
-        floor.stairsDown = Instantiate<GameObject>(stairsDownPrefab);
+        floor.stairsDown = Instantiate<StairsController>(stairsDownPrefab);
+        floor.stairsDown.player = player;
+        floor.stairsDown.gen = this;
         floor.stairsDown.transform.parent = floor.transform;
         pos.x = Mathf.FloorToInt(pos.x);
         pos.z = Mathf.FloorToInt(pos.z);
         floor.stairsDown.transform.localPosition = pos;
+        floor.stairsDown.transform.localEulerAngles = Vector3.up * Mathf.Floor(Random.value*4)*90;
     }
 
     void PlaceGems(FloorMaster floor)
     {
-        GemSpawnInfo info = gems[floor.floorNumber];
-        for (int i = 0; i < info.prefabs.Length; i++)
+        SpawnInfo info = spawnInfo[floor.floorNumber];
+        for (int i = 0; i < info.floorItems.Length; i++)
         {
-            for (int j = 0; j < info.counts[i]; j++)
+            SpawnItem item = info.floorItems[i];
+            for (int j = 0; j < item.count; j++)
             {
-                Vector3 pos = FindEmpty(floor.map);
-                GemScript g = Instantiate<GemScript>(info.prefabs[i]);
-                g.transform.parent = floor.gemHolder;
-                RaycastHit hit;
-                Physics.Raycast(pos, directions[Mathf.FloorToInt(Random.value * directions.Length)], out hit, 1000, wallLayer);
-                g.transform.localPosition = hit.point;
+                Spawnable g = Instantiate<Spawnable>(item.prefab);
+                g.Spawn(floor);
             }
         }
     }
 
-    Vector3 FindEmpty(int[,] map)
-    {
-        int x = 0, y = 0;
-        while (map[x, y] == 1)
-        {
-            x = Mathf.FloorToInt(Random.value * map.GetLength(0));
-            y = Mathf.FloorToInt(Random.value * map.GetLength(1));
-        }
-        return new Vector3(x - .5f + Random.value, Random.value, y-.5f+Random.value);
-    }
 }
 
 [System.Serializable]
-public struct GemSpawnInfo
+public struct SpawnInfo
 {
-    public GemScript[] prefabs;
-    public int[] counts;
+    public SpawnItem[] floorItems;
+}
+
+[System.Serializable]
+public struct SpawnItem
+{
+    public Spawnable prefab;
+    public int count;
 }
