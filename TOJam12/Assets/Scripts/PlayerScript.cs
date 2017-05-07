@@ -22,6 +22,8 @@ public class PlayerScript : MonoBehaviour {
         {
             gem.enabled = false;
             inventory.Add(gem.gameObject);
+            Debug.Log(gem.gemType.ToString());
+            DialogDisplay.AddInventory(gem.gemType);
         }
     }
 }

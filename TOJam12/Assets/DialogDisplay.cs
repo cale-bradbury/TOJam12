@@ -4,8 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class DialogDisplay : MonoBehaviour {
+
+
     public static DialogDisplay instance;
+    public Animator animator;
     public Dictionary<string, int> dialogVars;
+    public Dictionary<Inventory.Items, int> inventory;
     public Camera playerCamera;
     public Text text;
     public float lineHeight = 25;
@@ -20,11 +24,19 @@ public class DialogDisplay : MonoBehaviour {
     bool canSkip = true;
     int endedThisFrame = 0;
 
+    public static void AddInventory(Inventory.Items item)
+    {
+        if (!instance.inventory.ContainsKey(item))
+            instance.inventory[item] = 0;
+        instance.inventory[item]++;
+    }
+
     public void Awake()
     {
         instance = this;
         text.text = "";
-        dialogVars = new Dictionary<string, int>();    
+        dialogVars = new Dictionary<string, int>();
+        inventory = new Dictionary<Inventory.Items, int>();
         MouseLook[] ml = FindObjectsOfType<MouseLook>();
         foreach (MouseLook m in ml)
             scriptsToLock.Add(m);
@@ -103,25 +115,51 @@ public class DialogDisplay : MonoBehaviour {
         }
         else if (d.type == DialogElement.Type.JumpIfVar)
         {
-            if (dialogVars.ContainsKey(d.string1))
+            if (!dialogVars.ContainsKey(d.string2))
             {
-                if (d.condition == DialogElement.Condition.Equal && dialogVars[d.string1] == d.float1)
-                    Jump(d.string2);
-                else if (d.condition == DialogElement.Condition.Greater && dialogVars[d.string1] > d.float1)
-                    Jump(d.string2);
-                else if (d.condition == DialogElement.Condition.Less && dialogVars[d.string1] < d.float1)
-                    Jump(d.string2);
-                else if (d.condition == DialogElement.Condition.NotEqual && dialogVars[d.string1] != d.float1)
-                    Jump(d.string2);
+                dialogVars[d.string2] = 0;
             }
-            
+            if (d.condition == DialogElement.Condition.Equal && dialogVars[d.string2] == d.float1)
+                Jump(d.string1);
+            else if (d.condition == DialogElement.Condition.Greater && dialogVars[d.string2] > d.float1)
+                Jump(d.string1);
+            else if (d.condition == DialogElement.Condition.Less && dialogVars[d.string2] < d.float1)
+                Jump(d.string1);
+            else if (d.condition == DialogElement.Condition.NotEqual && dialogVars[d.string2] != d.float1)
+                Jump(d.string1);
+
+            fireNext = true;
+        }
+
+        else if (d.type == DialogElement.Type.JumpIfInventory)
+        {
+            if (!inventory.ContainsKey(d.item))
+            {
+                inventory[d.item] = 0;
+            }
+            if (d.condition == DialogElement.Condition.Equal && inventory[d.item] == d.float1)
+                Jump(d.string1);
+            else if (d.condition == DialogElement.Condition.Greater && inventory[d.item] > d.float1)
+                Jump(d.string1);
+            else if (d.condition == DialogElement.Condition.Less && inventory[d.item] < d.float1)
+                Jump(d.string1);
+            else if (d.condition == DialogElement.Condition.NotEqual && inventory[d.item] != d.float1)
+                Jump(d.string1);
+
             fireNext = true;
         }
         else if (d.type == DialogElement.Type.IncreaseVar)
         {
             if (!dialogVars.ContainsKey(d.string1))
                 dialogVars.Add(d.string1, 0);
-            dialogVars[d.string1]+= Mathf.RoundToInt( d.float1);
+            dialogVars[d.string1] += Mathf.RoundToInt(d.float1);
+            fireNext = true;
+        }
+        else if (d.type == DialogElement.Type.ChangeInventory)
+        {
+            if (!inventory.ContainsKey(d.item))
+                inventory.Add(d.item, 0);
+            inventory[d.item] += Mathf.RoundToInt(d.float1);
             fireNext = true;
         }
         index++;
@@ -178,7 +216,9 @@ public class DialogElement
         End,
         JumpPoint,
         JumpIfVar,
-        IncreaseVar
+        IncreaseVar,
+        JumpIfInventory,
+        ChangeInventory
     }
     public enum Condition
     {
@@ -194,5 +234,6 @@ public class DialogElement
     public float float1;
     public AudioSource audio;
     public Condition condition;
+    public Inventory.Items item;
     public Transform transform1;
 }

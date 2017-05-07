@@ -40,6 +40,8 @@ public class DialogEditor : Editor
             menu.AddItem(new GUIContent("Jump Point"), false, OnMenuClick, CreateElement(DialogElement.Type.JumpPoint));
             menu.AddItem(new GUIContent("Jump If"), false, OnMenuClick, CreateElement(DialogElement.Type.JumpIfVar));
             menu.AddItem(new GUIContent("Increment"), false, OnMenuClick, CreateElement(DialogElement.Type.IncreaseVar));
+            menu.AddItem(new GUIContent("Jump If Item"), false, OnMenuClick, CreateElement(DialogElement.Type.JumpIfInventory));
+            menu.AddItem(new GUIContent("ChangeInventory"), false, OnMenuClick, CreateElement(DialogElement.Type.ChangeInventory));
 
             menu.ShowAsContext();
         };
@@ -95,11 +97,29 @@ public class DialogEditor : Editor
                 ChangeColor(rect, jumpColor);
                 EditorGUI.LabelField(new Rect(rect.x, rect.y, 60, EditorGUIUtility.singleLineHeight), "jump if");
                 rect.x += 60;
-                EditorGUI.LabelField(new Rect(rect.x, rect.y, 60, EditorGUIUtility.singleLineHeight), "varName");
+                EditorGUI.LabelField(new Rect(rect.x, rect.y, 60, EditorGUIUtility.singleLineHeight), "jumpTag");
                 e.string1 = EditorGUI.TextField(new Rect(rect.x + 60, rect.y, rect.width - 120, EditorGUIUtility.singleLineHeight), e.string1);
                 rect.y += EditorGUIUtility.singleLineHeight;
-                EditorGUI.LabelField(new Rect(rect.x, rect.y, 60, EditorGUIUtility.singleLineHeight), "jumpTag");
+                EditorGUI.LabelField(new Rect(rect.x, rect.y, 60, EditorGUIUtility.singleLineHeight), "varName");
                 e.string2 = EditorGUI.TextField(new Rect(rect.x + 60, rect.y, rect.width - 120, EditorGUIUtility.singleLineHeight), e.string2);
+                rect.y += EditorGUIUtility.singleLineHeight;
+                EditorGUI.LabelField(new Rect(rect.x, rect.y, 60, EditorGUIUtility.singleLineHeight), "condition");
+                e.condition = (DialogElement.Condition)EditorGUI.EnumPopup(new Rect(rect.x + 60, rect.y, rect.width - 120, EditorGUIUtility.singleLineHeight), e.condition);
+                rect.y += EditorGUIUtility.singleLineHeight;
+                EditorGUI.LabelField(new Rect(rect.x, rect.y, 60, EditorGUIUtility.singleLineHeight), "value");
+                e.float1 = EditorGUI.FloatField(new Rect(rect.x + 60, rect.y, rect.width - 120, EditorGUIUtility.singleLineHeight), e.float1);
+            }
+
+            else if (t == DialogElement.Type.JumpIfInventory)
+            {
+                ChangeColor(rect, jumpColor);
+                EditorGUI.LabelField(new Rect(rect.x, rect.y, 60, EditorGUIUtility.singleLineHeight), "jump if");
+                rect.x += 60;
+                EditorGUI.LabelField(new Rect(rect.x, rect.y, 60, EditorGUIUtility.singleLineHeight), "jumpTag");
+                e.string1 = EditorGUI.TextField(new Rect(rect.x + 60, rect.y, rect.width - 120, EditorGUIUtility.singleLineHeight), e.string1);
+                rect.y += EditorGUIUtility.singleLineHeight;
+                EditorGUI.LabelField(new Rect(rect.x, rect.y, 60, EditorGUIUtility.singleLineHeight), "item");
+                e.item = (Inventory.Items)EditorGUI.EnumPopup(new Rect(rect.x + 60, rect.y, rect.width - 120, EditorGUIUtility.singleLineHeight), e.item);
                 rect.y += EditorGUIUtility.singleLineHeight;
                 EditorGUI.LabelField(new Rect(rect.x, rect.y, 60, EditorGUIUtility.singleLineHeight), "condition");
                 e.condition = (DialogElement.Condition)EditorGUI.EnumPopup(new Rect(rect.x + 60, rect.y, rect.width - 120, EditorGUIUtility.singleLineHeight), e.condition);
@@ -121,7 +141,16 @@ public class DialogEditor : Editor
                 rect.x += 60;
                 e.string1 = EditorGUI.TextField(new Rect(rect.x + 60, rect.y, rect.width - 120, EditorGUIUtility.singleLineHeight), e.string1);
                 rect.y += EditorGUIUtility.singleLineHeight;
-                e.float1 = EditorGUI.FloatField(new Rect(rect.x-60, rect.y, rect.width, EditorGUIUtility.singleLineHeight),"amount", e.float1);
+                e.float1 = EditorGUI.FloatField(new Rect(rect.x - 60, rect.y, rect.width, EditorGUIUtility.singleLineHeight), "amount", e.float1);
+            }
+            else if (t == DialogElement.Type.ChangeInventory)
+            {
+                ChangeColor(rect, varColor);
+                EditorGUI.LabelField(new Rect(rect.x, rect.y, 120, EditorGUIUtility.singleLineHeight), "item");
+                rect.x += 60;
+                e.item = (Inventory.Items)EditorGUI.EnumPopup(new Rect(rect.x + 60, rect.y, rect.width - 120, EditorGUIUtility.singleLineHeight), e.item);
+                rect.y += EditorGUIUtility.singleLineHeight;
+                e.float1 = EditorGUI.FloatField(new Rect(rect.x - 60, rect.y, rect.width, EditorGUIUtility.singleLineHeight), "amount", e.float1);
             }
         };
 
@@ -130,7 +159,7 @@ public class DialogEditor : Editor
             DialogElement e = dialog.dialogs[index] as DialogElement;
             DialogElement.Type t = e.type;
             float f = 2;
-            if (t == DialogElement.Type.JumpIfVar)
+            if (t == DialogElement.Type.JumpIfVar || t == DialogElement.Type.JumpIfInventory)
                 f = 4;
             return EditorGUIUtility.singleLineHeight * f+8;
         };

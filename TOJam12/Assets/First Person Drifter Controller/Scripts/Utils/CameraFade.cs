@@ -72,11 +72,11 @@ public class CameraFade : MonoBehaviour
 					instance.m_CurrentScreenOverlayColor = instance.m_TargetScreenOverlayColor;
 					SetScreenOverlayColor(instance.m_CurrentScreenOverlayColor);
 					instance.m_DeltaColor = new Color( 0,0,0,0 );
- 
-					if( instance.m_OnFadeFinish != null )
+
+                    Die();
+                    if ( instance.m_OnFadeFinish != null )
 						instance.m_OnFadeFinish();
  
-					Die();
 				}
 				else
 				{

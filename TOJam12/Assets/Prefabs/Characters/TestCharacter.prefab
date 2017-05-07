@@ -277,73 +277,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogs:
+  - type: 8
+    string1: talkedTo
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
   - type: 0
-    string1: TEST
+    string1: pls gib Fluorite
     string2: 
     float1: 0
     audio: {fileID: 0}
     condition: 0
+    item: 0
     transform1: {fileID: 0}
-  - type: 1
-    string1: testEvent
-    string2: 
-    float1: 0
-    audio: {fileID: 0}
-    condition: 0
-    transform1: {fileID: 0}
-  - type: 2
+  - type: 4
     string1: 
     string2: 
-    float1: 1
-    audio: {fileID: 0}
-    condition: 0
-    transform1: {fileID: 4735839582479316}
-  - type: 0
-    string1: okay
-    string2: 
     float1: 0
     audio: {fileID: 0}
     condition: 0
+    item: 0
     transform1: {fileID: 0}
   - type: 5
     string1: 
-    string2: test
+    string2: talkedTo
     float1: 0
     audio: {fileID: 0}
     condition: 0
+    item: 0
     transform1: {fileID: 0}
   - type: 0
-    string1: bye
+    string1: ty for the flourite~
     string2: 
     float1: 0
     audio: {fileID: 0}
     condition: 0
+    item: 0
     transform1: {fileID: 0}
-  - type: 0
-    string1: '...'
+  - type: 9
+    string1: 
     string2: 
-    float1: 0
+    float1: -1
     audio: {fileID: 0}
     condition: 0
-    transform1: {fileID: 0}
-  - type: 7
-    string1: testVar
-    string2: 
-    float1: 1
-    audio: {fileID: 0}
-    condition: 0
-    transform1: {fileID: 0}
-  - type: 6
-    string1: testVar
-    string2: test
-    float1: 3
-    audio: {fileID: 0}
-    condition: 1
-    transform1: {fileID: 0}
-  - type: 0
-    string1: i said BYE!!
-    string2: 
-    float1: 0
-    audio: {fileID: 0}
-    condition: 0
+    item: 0
     transform1: {fileID: 0}

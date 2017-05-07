@@ -370,7 +370,7 @@ MonoBehaviour:
   - floorItems:
     - prefab: {fileID: 114830717507177658, guid: 8eee9602b319ff04ebed01aca86ba745,
         type: 2}
-      count: 0
+      count: 10
     - prefab: {fileID: 114382412727556842, guid: 093c63092f4663a42bdd34cba31748c8,
         type: 2}
       count: 50
@@ -574,6 +574,7 @@ GameObject:
   - component: {fileID: 1287011818}
   - component: {fileID: 1287011817}
   - component: {fileID: 1287011819}
+  - component: {fileID: 1287011820}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -612,7 +613,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.11764705, g: 0.11764705, b: 0.11764705, a: 0.434}
+  m_Color: {r: 0.11764705, g: 0.11764705, b: 0.11764705, a: 0.522}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -644,9 +645,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8828575a54c5a4d4cae47b7bb3757880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   playerCamera: {fileID: 2047334749}
   text: {fileID: 1234061818}
   lineHeight: 25
+--- !u!95 &1287011820
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1287011815}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0dea20d5658e3d346ac99a49135d31fd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1687183075
 GameObject:
   m_ObjectHideFlags: 0

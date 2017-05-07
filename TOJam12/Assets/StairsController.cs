@@ -8,11 +8,7 @@ public class StairsController : MonoBehaviour {
     internal DungeonGenerator gen;
     public bool down = false;
     bool inElevator = false;
-
-	// Use this for initialization
-	void Start () {
-		
-	}
+    
 
     // Update is called once per frame
     void OnTriggerEnter(Collider c)
@@ -41,10 +37,12 @@ public class StairsController : MonoBehaviour {
         if (down)
         {
             gen.NextFloor();
-        }else
+        }
+        else
         {
             gen.PrevFloor();
         }
-
     }
+    
+    
 }
