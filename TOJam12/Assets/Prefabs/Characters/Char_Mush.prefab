@@ -291,8 +291,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogs:
+  - type: 6
+    string1: novisit
+    string2: mt
+    float1: 0
+    audio: {fileID: 0}
+    condition: 2
+    item: 0
+    transform1: {fileID: 0}
   - type: 8
-    string1: talkedTo
+    string1: ggem
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 4
+    transform1: {fileID: 0}
+  - type: 5
+    string1: 
+    string2: novisit
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 6
+    string1: talk1
+    string2: mt
+    float1: 1
+    audio: {fileID: 0}
+    condition: 2
+    item: 0
+    transform1: {fileID: 0}
+  - type: 6
+    string1: talk2
+    string2: mt
+    float1: 2
+    audio: {fileID: 0}
+    condition: 2
+    item: 0
+    transform1: {fileID: 0}
+  - type: 6
+    string1: talk3
+    string2: mt
+    float1: 2
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 0
+    string1: "\u2026. ; _ ;"
     string2: 
     float1: 0
     audio: {fileID: 0}
@@ -300,7 +348,156 @@ MonoBehaviour:
     item: 0
     transform1: {fileID: 0}
   - type: 0
-    string1: pls gib Fluorite
+    string1: "\u2026\u2026hi."
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 0
+    string1: "Sorry, I\u2019m not feeling too great right now. "
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 0
+    string1: "I haven\u2019t been feeling too great for a while. I don\u2019t know
+      what\u2019s up with me, but I just feel bad all over, you know?"
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 0
+    string1: "So I kinda just, hang down here, I dunno it doesn\u2019t make me feel
+      better but it\u2019s\u2026 whatever\u2026."
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 0
+    string1: "I was looking for something to make me feel better but I don\u2019t
+      know how to look for it anymore. It\u2019s a crystal that\u2019s like if a coliseum
+      fell down? Except it\u2019s got some pretty alright colours."
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 0
+    string1: "If you find any could I have one? If not, it\u2019s like, whatever."
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 7
+    string1: mt
+    string2: 
+    float1: 1
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 8
+    string1: ggem
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 4
+    transform1: {fileID: 0}
+  - type: 4
+    string1: 
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 5
+    string1: 
+    string2: talk1
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 0
+    string1: I wonder if the colours look any good down here in this cave.
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 7
+    string1: mt
+    string2: 
+    float1: 1
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 4
+    string1: 
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 5
+    string1: 
+    string2: talk2
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 0
+    string1: Maybe if I grab those columns I can use them prop myself back up, ya
+      know?
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 7
+    string1: mt
+    string2: 
+    float1: 1
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 4
+    string1: 
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 5
+    string1: 
+    string2: talk3
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 0
+    string1: "It\u2019d be nice to have something to make me feel nice."
     string2: 
     float1: 0
     audio: {fileID: 0}
@@ -317,15 +514,7 @@ MonoBehaviour:
     transform1: {fileID: 0}
   - type: 5
     string1: 
-    string2: talkedTo
-    float1: 0
-    audio: {fileID: 0}
-    condition: 0
-    item: 0
-    transform1: {fileID: 0}
-  - type: 0
-    string1: ty for the flourite~
-    string2: 
+    string2: ggem
     float1: 0
     audio: {fileID: 0}
     condition: 0
@@ -335,6 +524,50 @@ MonoBehaviour:
     string1: 
     string2: 
     float1: -1
+    audio: {fileID: 0}
+    condition: 0
+    item: 4
+    transform1: {fileID: 0}
+  - type: 0
+    string1: "Wow. Thanks! This is\u2026 really nice. It\u2019s some tourmaline, I
+      remember now. This is definitely what I need to feel better. "
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 0
+    string1: "These colours make me feel really good inside.\r\n"
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 0
+    string1: "I wonder if you could build something out of these, just a house filled
+      with crystal columns. I think I\u2019m gonna find some more and build myself
+      a crystal house."
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 0
+    string1: "Thanks again for getting this for me, I think I\u2019m gonna be okay
+      now, I got something to do now, gonna build me a house!!!\r\n"
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 7
+    string1: mt
+    string2: 
+    float1: 5
     audio: {fileID: 0}
     condition: 0
     item: 0

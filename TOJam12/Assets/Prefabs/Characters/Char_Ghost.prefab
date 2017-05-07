@@ -291,8 +291,57 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogs:
+  - type: 6
+    string1: novisit
+    string2: gt
+    float1: 0
+    audio: {fileID: 0}
+    condition: 2
+    item: 0
+    transform1: {fileID: 0}
   - type: 8
-    string1: talkedTo
+    string1: ggem
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 5
+    string1: 
+    string2: novisit
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 6
+    string1: talk1
+    string2: gt
+    float1: 1
+    audio: {fileID: 0}
+    condition: 2
+    item: 0
+    transform1: {fileID: 0}
+  - type: 6
+    string1: talk2
+    string2: gt
+    float1: 2
+    audio: {fileID: 0}
+    condition: 2
+    item: 0
+    transform1: {fileID: 0}
+  - type: 6
+    string1: talk3
+    string2: gt
+    float1: 2
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 0
+    string1: 'Hi new friend! Fancy to see another soul down here! How long have you
+      been in here? '
     string2: 
     float1: 0
     audio: {fileID: 0}
@@ -300,7 +349,69 @@ MonoBehaviour:
     item: 0
     transform1: {fileID: 0}
   - type: 0
-    string1: pls gib Fluorite
+    string1: "I don\u2019t really know how long I\u2019ve been down here, I don\u2019t
+      even know if I\u2019ve been anywhere else\u2026"
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 0
+    string1: "I just really like the stuff in this cave though! It\u2019s a nice little
+      place and there are some fun crystals you can find, they are very pretty and
+      shiny."
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 0
+    string1: "\rI like them a lot."
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 0
+    string1: "There is this one I really like. I can\u2019t remember what it\u2019s
+      called."
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 0
+    string1: "It\u2019s kind of like, a bunch of boxes together? I\u2019ve always
+      loved it because it was in my favourite colour, purple."
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 0
+    string1: Do you think you could find something like that? I would love to have
+      one!
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 7
+    string1: gt
+    string2: 
+    float1: 1
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 8
+    string1: ggem
     string2: 
     float1: 0
     audio: {fileID: 0}
@@ -317,15 +428,96 @@ MonoBehaviour:
     transform1: {fileID: 0}
   - type: 5
     string1: 
-    string2: talkedTo
+    string2: talk1
     float1: 0
     audio: {fileID: 0}
     condition: 0
     item: 0
     transform1: {fileID: 0}
   - type: 0
-    string1: ty for the flourite~
+    string1: Boxes!
     string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 7
+    string1: gt
+    string2: 
+    float1: 1
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 4
+    string1: 
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 5
+    string1: 
+    string2: talk2
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 0
+    string1: Purple!!!
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 7
+    string1: gt
+    string2: 
+    float1: 1
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 4
+    string1: 
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 5
+    string1: 
+    string2: talk3
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 0
+    string1: "Are you okay? You may have been down here too long. It\u2019s okay if
+      you can\u2019t find it."
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 4
+    string1: 
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 5
+    string1: 
+    string2: ggem
     float1: 0
     audio: {fileID: 0}
     condition: 0
@@ -335,6 +527,54 @@ MonoBehaviour:
     string1: 
     string2: 
     float1: -1
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 0
+    string1: "OH! You found one! I remember what it\u2019s called now, calcite! Thank
+      you for finding this for me, it\u2019s so nice to have my favourite colour around,
+      also I think it\u2019ll help me with something but I\u2019m not sure what."
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 0
+    string1: "Did you know that fluorite was formed so many years ago when hot water
+      containing fluoride forced it\u2019s way up through the earth into the bedrock!
+      The bedrock was filled with calcium rich limestone and so fluorite started forming
+      in the bedrock!\r\n"
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 0
+    string1: "Some types of fluorite also glow under a black light, if this caved
+      is filled with it, wouldn\u2019t it be so fun to have a party down here?"
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 0
+    string1: Well thank you again for finding this for me! I love it so much you are
+      the best! I think there might be some other folks in here too, you should go
+      say hi!
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 7
+    string1: gt
+    string2: 
+    float1: 5
     audio: {fileID: 0}
     condition: 0
     item: 0

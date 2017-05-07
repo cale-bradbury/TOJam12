@@ -277,8 +277,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogs:
+  - type: 6
+    string1: novisit
+    string2: tt
+    float1: 0
+    audio: {fileID: 0}
+    condition: 2
+    item: 0
+    transform1: {fileID: 0}
   - type: 8
-    string1: talkedTo
+    string1: tgem
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 3
+    transform1: {fileID: 0}
+  - type: 5
+    string1: 
+    string2: novisit
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 6
+    string1: talk1
+    string2: tt
+    float1: 1
+    audio: {fileID: 0}
+    condition: 2
+    item: 0
+    transform1: {fileID: 0}
+  - type: 6
+    string1: talk2
+    string2: tt
+    float1: 2
+    audio: {fileID: 0}
+    condition: 2
+    item: 0
+    transform1: {fileID: 0}
+  - type: 6
+    string1: talk3
+    string2: tt
+    float1: 2
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 0
+    string1: '...'
     string2: 
     float1: 0
     audio: {fileID: 0}
@@ -286,7 +334,174 @@ MonoBehaviour:
     item: 0
     transform1: {fileID: 0}
   - type: 0
-    string1: pls gib Fluorite
+    string1: '...'
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 0
+    string1: "\u2026. Hi\u2026"
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 0
+    string1: So you made it all the way down here? If you did you meet the ghost??
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 0
+    string1: "Could you do me a favour?? I\u2019m looking for this specific crystal.
+      It\u2019s sort of like a tear drop. It\u2019s very pretty!! All purple and orange.
+      Such nice colours."
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 0
+    string1: "I really want to go talk to them but I am kind of nervous, I\u2019ve
+      tried to before but whenever they are around they just don\u2019t seem to notice
+      me and sometimes it seems like the just disappear!"
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 0
+    string1: "I think it\u2019d help me be able to talk to them, as I know they like
+      crystals too and having one would open up the conversation a bit, you know?"
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 0
+    string1: "\rSo if you could find me one that would be great."
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 0
+    string1: "I\u2019ll be here waiting!!"
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 7
+    string1: tt
+    string2: 
+    float1: 1
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 8
+    string1: tgem
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 3
+    transform1: {fileID: 0}
+  - type: 4
+    string1: 
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 5
+    string1: 
+    string2: talk1
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 0
+    string1: "It\u2019s such pretty colours it should be easy to find!"
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 7
+    string1: tt
+    string2: 
+    float1: 1
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 4
+    string1: 
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 5
+    string1: 
+    string2: talk2
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 0
+    string1: The sooner you can get it for me the better, before my nerves get the
+      best of me.
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 7
+    string1: tt
+    string2: 
+    float1: 1
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 4
+    string1: 
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 5
+    string1: 
+    string2: talk3
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 0
+    string1: "It\u2019s teardrop shaped remember? I know too well what those look
+      like\u2026"
     string2: 
     float1: 0
     audio: {fileID: 0}
@@ -303,15 +518,7 @@ MonoBehaviour:
     transform1: {fileID: 0}
   - type: 5
     string1: 
-    string2: talkedTo
-    float1: 0
-    audio: {fileID: 0}
-    condition: 0
-    item: 0
-    transform1: {fileID: 0}
-  - type: 0
-    string1: ty for the flourite~
-    string2: 
+    string2: tgem
     float1: 0
     audio: {fileID: 0}
     condition: 0
@@ -321,6 +528,40 @@ MonoBehaviour:
     string1: 
     string2: 
     float1: -1
+    audio: {fileID: 0}
+    condition: 0
+    item: 3
+    transform1: {fileID: 0}
+  - type: 0
+    string1: Thank you!! Some ametrine! This is just what I need to help me talk to
+      them.
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 0
+    string1: This is helping me feel better already just having it, I really think
+      I can talk to them now.
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 0
+    string1: "Well okay I\u2019m going to go do it! Wish me luck!"
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 7
+    string1: tt
+    string2: 
+    float1: 5
     audio: {fileID: 0}
     condition: 0
     item: 0

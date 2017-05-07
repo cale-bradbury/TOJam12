@@ -120,6 +120,7 @@ public class DialogDisplay : MonoBehaviour {
             {
                 dialogVars[d.string2] = 0;
             }
+            Debug.Log(d.condition +"   "+d.string2 +"   "+d.float1+"   "+dialogVars[d.string2] +"  "+d.string1);
             if (d.condition == DialogElement.Condition.Equal && dialogVars[d.string2] == d.float1)
                 Jump(d.string1);
             else if (d.condition == DialogElement.Condition.Greater && dialogVars[d.string2] > d.float1)
@@ -154,6 +155,7 @@ public class DialogDisplay : MonoBehaviour {
             if (!dialogVars.ContainsKey(d.string1))
                 dialogVars.Add(d.string1, 0);
             dialogVars[d.string1] += Mathf.RoundToInt(d.float1);
+            Debug.Log(dialogVars[d.string1]);
             fireNext = true;
         }
         else if (d.type == DialogElement.Type.ChangeInventory)
@@ -173,7 +175,7 @@ public class DialogDisplay : MonoBehaviour {
         for (int i = 0; i < currentDialog.dialogs.Count; i++)
         {
             DialogElement d = currentDialog.dialogs[i];
-            if (d.type == DialogElement.Type.JumpPoint)
+            if (d.type == DialogElement.Type.JumpPoint && d.string2 == tag) 
             {
                 index = i;
                 return;

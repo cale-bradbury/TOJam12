@@ -17,6 +17,14 @@ public class FloorMaster : MonoBehaviour {
         DungeonMaster.instance.player.transform.position = stairsUp.transform.position + Vector3.up * .2f;
     }
 
+    void OnEnable()
+    {
+        if (floorNumber == 0)
+            stairsUp.gameObject.SetActive(false);
+        else if(floorNumber ==3)
+            stairsDown.gameObject.SetActive(false);
+    }
+
     public void FindEmpties()
     {
         empty = new List<Vector2>();
