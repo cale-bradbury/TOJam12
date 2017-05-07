@@ -24,7 +24,7 @@ public class DungeonGenerator : MonoBehaviour
     public float weldBucket = 1;
     public Vector3 bumpDistance = Vector3.one;
     public LayerMask wallLayer;
-    public SpawnInfo[] gems;
+    public SpawnInfo[] spawnInfo;
 
     void OnEnable()
     {
@@ -464,12 +464,13 @@ public class DungeonGenerator : MonoBehaviour
 
     void PlaceGems(FloorMaster floor)
     {
-        SpawnInfo info = gems[floor.floorNumber];
-        for (int i = 0; i < info.prefabs.Length; i++)
+        SpawnInfo info = spawnInfo[floor.floorNumber];
+        for (int i = 0; i < info.floorItems.Length; i++)
         {
-            for (int j = 0; j < info.counts[i]; j++)
+            SpawnItem item = info.floorItems[i];
+            for (int j = 0; j < item.count; j++)
             {
-                Spawnable g = Instantiate<Spawnable>(info.prefabs[i]);
+                Spawnable g = Instantiate<Spawnable>(item.prefab);
                 g.Spawn(floor);
             }
         }
@@ -480,6 +481,12 @@ public class DungeonGenerator : MonoBehaviour
 [System.Serializable]
 public struct SpawnInfo
 {
-    public Spawnable[] prefabs;
-    public int[] counts;
+    public SpawnItem[] floorItems;
+}
+
+[System.Serializable]
+public struct SpawnItem
+{
+    public Spawnable prefab;
+    public int count;
 }
