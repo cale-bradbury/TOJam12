@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 4369852512278086}
   - component: {fileID: 33899560459342674}
   - component: {fileID: 23969323185060018}
+  - component: {fileID: 114575576844583680}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -204,6 +205,80 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookAt: {fileID: 0}
   smoothing: 0.8
+  yOnly: 1
+--- !u!114 &114575576844583680
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1303352625704328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00fd88692d04c9142b76512f8ef9f52e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.012145996
+      value: 1.0125008
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.025067203
+      value: -0.030810595
+      inSlope: -0.6711483
+      outSlope: -0.6711483
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.037426516
+      value: 0.85254246
+      inSlope: -0.19218773
+      outSlope: -0.19218773
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.054718994
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 1
+    m_RotationOrder: 0
+  animationTime: 6
+  startingPhase: 0
+  minValue: 0
+  maxValue: 0.1
+  field:
+    type: 0
+    types:
+    - System.Single
+    - System.Int32
+    - UnityEngine.Vector2
+    - UnityEngine.Vector3
+    - UnityEngine.Vector4
+    obj: {fileID: 4369852512278086}
+    varName: localPosition-y
+    componentIndex: 0
+    isMat: 0
+    componentName: 
+    go: {fileID: 0}
+    isVector: 0
+    index: 0
 --- !u!114 &114830717507177658
 MonoBehaviour:
   m_ObjectHideFlags: 1

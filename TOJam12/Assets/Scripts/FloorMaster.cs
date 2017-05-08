@@ -46,9 +46,7 @@ public class FloorMaster : MonoBehaviour {
         if (empty.Count == 0) 
             return Vector3.one*(-100);
         int i = Mathf.FloorToInt(Random.value * empty.Count);
-        Debug.Log(i);
         Vector2 v = empty[i];
-        Debug.Log(v);
         if (set != 0)
         {
             map[Mathf.FloorToInt(v.x), Mathf.FloorToInt(v.y)] = set;

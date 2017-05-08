@@ -260,6 +260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookAt: {fileID: 0}
   smoothing: 0.8
+  yOnly: 1
 --- !u!114 &114830717507177658
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -57,6 +57,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4382821351080484}
   - component: {fileID: 108881977637499276}
+  - component: {fileID: 114105100348285924}
   m_Layer: 0
   m_Name: Point light
   m_TagString: Untagged
@@ -192,6 +193,76 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114105100348285924
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1534094798036160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a95fc00188f232488bb27fddfe08024, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 0
+    m_RotationOrder: 0
+  animationTime: 3
+  startingPhase: 0
+  gradient:
+    serializedVersion: 2
+    key0: {r: 0, g: 1, b: 0.2965517, a: 1}
+    key1: {r: 0, g: 0.5862069, b: 1, a: 1}
+    key2: {r: 0, g: 1, b: 0.79310346, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 30455
+    ctime2: 65535
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 3
+    m_NumAlphaKeys: 2
+  field:
+    type: {r: 0, g: 0, b: 0, a: 0}
+    types:
+    - UnityEngine.Color
+    obj: {fileID: 108881977637499276}
+    varName: color
+    componentIndex: 0
+    isMat: 0
+    componentName: 
+    go: {fileID: 0}
 --- !u!114 &114351186097359656
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -260,6 +331,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookAt: {fileID: 0}
   smoothing: 0.8
+  yOnly: 1
 --- !u!114 &114830717507177658
 MonoBehaviour:
   m_ObjectHideFlags: 1

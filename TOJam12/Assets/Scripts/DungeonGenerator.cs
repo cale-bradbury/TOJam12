@@ -324,11 +324,11 @@ public class DungeonGenerator : MonoBehaviour
         }
         else if (map[i - 1, j] == 1 && map[i + 1, j] == 1 && map[i, j - 1] == 0 && map[i, j + 1] == 0)
         {
+            rot = Vector3.up * 90;
             return oPrefab;
         }
         else if (map[i - 1, j] == 0 && map[i + 1, j] == 0 && map[i, j - 1] == 1 && map[i, j + 1] == 1)
         {
-            rot = Vector3.up * 180;
             return oPrefab;
         }
 
