@@ -88,6 +88,10 @@ public class DungeonGenerator : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.G))
             Generate();
+        if (Input.GetKeyDown(KeyCode.L))
+            player.transform.position = floors[floorIndex].stairsDown.transform.position;
+        if (Input.GetKeyDown(KeyCode.K))
+            player.transform.position = floors[floorIndex].stairsUp.transform.position;
     }
 
     [ContextMenu("Generate~")]

@@ -152,6 +152,8 @@ public class DialogEditor : Editor
                 rect.y += EditorGUIUtility.singleLineHeight;
                 e.float1 = EditorGUI.FloatField(new Rect(rect.x - 60, rect.y, rect.width, EditorGUIUtility.singleLineHeight), "amount", e.float1);
             }
+            if (GUI.Button(new Rect(0, rect.y, 10, 10), "c"))
+                Copy();
         };
 
         list.elementHeightCallback = (index) =>
@@ -163,6 +165,7 @@ public class DialogEditor : Editor
                 f = 4;
             return EditorGUIUtility.singleLineHeight * f+8;
         };
+        
     }
 
     void ChangeColor(Rect rect, Color c)
@@ -188,5 +191,12 @@ public class DialogEditor : Editor
         list.DoLayoutList();
         serializedObject.ApplyModifiedProperties();
         EditorUtility.SetDirty(dialog);
+    }
+    
+    public void Copy()
+    {
+        DialogElement d = dialog.dialogs[list.index];
+        Debug.Log("DIALOG");
+        dialog.dialogs.Insert(list.index, d.Copy());
     }
 }

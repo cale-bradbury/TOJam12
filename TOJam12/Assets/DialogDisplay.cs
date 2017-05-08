@@ -239,4 +239,18 @@ public class DialogElement
     public Condition condition;
     public Inventory.Items item;
     public Transform transform1;
+
+    public DialogElement Copy()
+    {
+        DialogElement d = new DialogElement();
+        d.string1 = this.string1;
+        d.string2 = this.string2;
+        d.float1 = this.float1;
+        d.audio = this.audio;
+        d.condition = this.condition;
+        d.item = this.item;
+        d.transform1 = this.transform1;
+        d.type = this.type;
+        return d;
+    }
 }

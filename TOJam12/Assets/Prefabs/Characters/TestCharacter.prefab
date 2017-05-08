@@ -265,6 +265,7 @@ MonoBehaviour:
     m_Bits: 512
   faceRay: 0
   adtionalRotation: {x: 0, y: 0, z: 0}
+  adtionalPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114876748294393876
 MonoBehaviour:
   m_ObjectHideFlags: 1

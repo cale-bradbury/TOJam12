@@ -463,10 +463,58 @@ MonoBehaviour:
     condition: 0
     item: 2
     transform1: {fileID: 0}
+  - type: 7
+    string1: calcite
+    string2: 
+    float1: 1
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 6
+    string1: gem3
+    string2: calcite
+    float1: 3
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 6
+    string1: gem2
+    string2: calcite
+    float1: 2
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 6
+    string1: gem1
+    string2: calcite
+    float1: 1
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
   - type: 0
     string1: "Wow thanks!! Some calcite! This definitely compliments my style so much!!
       I\u2019m gonna be flyest bird around."
     string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 4
+    string1: 
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 5
+    string1: 
+    string2: gem1
     float1: 0
     audio: {fileID: 0}
     condition: 0
@@ -481,9 +529,41 @@ MonoBehaviour:
     condition: 0
     item: 0
     transform1: {fileID: 0}
+  - type: 4
+    string1: 
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 5
+    string1: 
+    string2: gem2
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
   - type: 0
     string1: "I look so good! I\u2019m gonna take on the world!!!"
     string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 4
+    string1: 
+    string2: 
+    float1: 0
+    audio: {fileID: 0}
+    condition: 0
+    item: 0
+    transform1: {fileID: 0}
+  - type: 5
+    string1: 
+    string2: gem3
     float1: 0
     audio: {fileID: 0}
     condition: 0
@@ -498,10 +578,10 @@ MonoBehaviour:
     condition: 0
     item: 0
     transform1: {fileID: 0}
-  - type: 7
-    string1: bt
+  - type: 4
+    string1: 
     string2: 
-    float1: 5
+    float1: 0
     audio: {fileID: 0}
     condition: 0
     item: 0
