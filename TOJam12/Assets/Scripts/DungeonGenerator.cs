@@ -28,6 +28,8 @@ public class DungeonGenerator : MonoBehaviour
     public SpawnInfo[] spawnInfo;
     int floorIndex = 0;
 
+    public AudioSource audio;
+
     void OnEnable()
     {
         Generate();
@@ -86,12 +88,13 @@ public class DungeonGenerator : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G))
-            Generate();
+        
         if (Input.GetKeyDown(KeyCode.L))
             player.transform.position = floors[floorIndex].stairsDown.transform.position;
         if (Input.GetKeyDown(KeyCode.K))
             player.transform.position = floors[floorIndex].stairsUp.transform.position;
+
+        audio.pitch = Mathf.Lerp(audio.pitch, 1 - floorIndex * .1f, .05f);
     }
 
     [ContextMenu("Generate~")]
